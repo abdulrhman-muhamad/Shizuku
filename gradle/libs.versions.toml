@@ -1,5 +1,10 @@
 [versions]
-appPackageName = "com.nll.shizuku.privileged.api"
+# WhtsAgent brand: manager app's own package identity. Safe to change freely.
+appPackageName = "com.whtsagent.shizuku.privileged.api"
+# COMPATIBILITY CONTRACT — do NOT change unless you also rebuild your client (dialer) app.
+# This is the Bundle key the server uses to push its Binder into each client's ShizukuProvider,
+# and the same key the client's Shizuku-API library reads. Kept at the original Shizuku value
+# so existing clients keep working. See plan/03-full-independence.md before changing.
 appExtraBinder ="moe.shizuku.privileged.api.intent.extra.BINDER"
 
 

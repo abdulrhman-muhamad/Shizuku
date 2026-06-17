@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Shizuku (NLL)</string>
+    <string name="app_name" translatable="false">WhtsAgent Shizuku</string>
+    <!-- TODO(brand): the three values below still point to NLL. Replace with your own when ready
+         (see plan/01-rebranding.md). Left functional for now to avoid dead links. -->
     <string name="support_email" translatable="false">cb@nllapps.com</string>
     <string name="translation_url" translatable="false">https://translate.nllapps.com/projects/shizuku/</string>
     <string name="help_url" translatable="false">https://github.com/NLLAPPS/Shizuku/wiki</string>
