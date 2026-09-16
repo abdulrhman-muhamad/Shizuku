@@ -84,6 +84,8 @@ public class ShizukuService extends Service<ShizukuUserServiceManager, ShizukuCl
         } catch (Throwable tr) {
             LOGGER.w("Couldn't get manager package name from CLASSPATH", tr);
         }
+        // Must never be null: it is dereferenced unguarded by the isManager check below.
+        if (packageName == null) packageName = ServerConstants.MANAGER_APPLICATION_ID;
         MANAGER_APPLICATION_ID = packageName;
     }
 
