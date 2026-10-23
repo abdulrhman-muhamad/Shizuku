@@ -1,6 +1,9 @@
 [versions]
-# WhtsAgent brand: manager app's own package identity. Safe to change freely.
-appPackageName = "com.whtsagent.shizuku.privileged.api"
+# WhtsAgent brand: manager app's own package identity. Not part of the binder contract, but
+# changing it makes a new app (no in-place upgrade) and clients that detect the helper by
+# package name — Dialer-main's ShizukuClient.MANAGER_PACKAGES + <queries> — must list it.
+# Previously "com.whtsagent.shizuku.privileged.api".
+appPackageName = "com.whtsagent.helper"
 # COMPATIBILITY CONTRACT — do NOT change unless you also rebuild your client (dialer) app.
 # This is the Bundle key the server uses to push its Binder into each client's ShizukuProvider,
 # and the same key the client's Shizuku-API library reads. Kept at the original Shizuku value
