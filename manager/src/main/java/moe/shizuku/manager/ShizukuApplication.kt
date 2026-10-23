@@ -1,5 +1,7 @@
 package moe.shizuku.manager
 
+import rikka.shizuku.Shizuku
+import moe.shizuku.manager.setup.SetupState
 import android.app.Application
 import android.content.Context
 import android.os.Build
@@ -40,6 +42,7 @@ class ShizukuApplication : Application() {
         AppCompatDelegate.setDefaultNightMode(ShizukuSettings.getNightMode())
 
         if(ShizukuSettings.getWatchdog()) WatchdogService.start(context)
+        Shizuku.addBinderReceivedListenerSticky { SetupState.onServerRunning(context) }
     }
 
     override fun onCreate() {
