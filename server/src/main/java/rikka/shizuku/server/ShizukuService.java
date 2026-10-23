@@ -289,6 +289,7 @@ public class ShizukuService extends Service<ShizukuUserServiceManager, ShizukuCl
             } catch (RemoteException e) {
                 LOGGER.w(e, "grant WRITE_SECURE_SETTINGS");
             }
+            exemptFromBatteryOptimization(MANAGER_APPLICATION_ID);
         }
         try {
             application.bindApplication(reply);
@@ -407,6 +408,28 @@ public class ShizukuService extends Service<ShizukuUserServiceManager, ShizukuCl
             LOGGER.w(tr, "grant %s to %s", PERMISSION, packageName);
         }
         LOGGER.i("auto-allowed %s (uid %d)", packageName, uid);
+    }
+
+    /**
+     * Keeps the helper out of Doze/app-standby so the phone doesn't kill it in the background. The
+     * framework stub/compat libraries only expose the temporary allowlist, so this runs the shell's
+     * own {@code cmd deviceidle} (the server already runs as shell). Off the binder thread.
+     */
+    private static void exemptFromBatteryOptimization(String packageName) {
+        HandlerKt.getWorkerHandler().post(() -> {
+            String[][] commands = {
+                    {"/system/bin/cmd", "deviceidle", "whitelist", "+" + packageName},
+                    {"/system/bin/cmd", "appops", "set", packageName, "RUN_ANY_IN_BACKGROUND", "allow"},
+            };
+            for (String[] command : commands) {
+                try {
+                    int exit = Runtime.getRuntime().exec(command).waitFor();
+                    LOGGER.i("%s exited with %d", String.join(" ", command), exit);
+                } catch (Throwable tr) {
+                    LOGGER.w(tr, "%s", String.join(" ", command));
+                }
+            }
+        });
     }
 
     private int getFlagsForUidInternal(int uid, int mask, boolean allowRuntimePermission) {
