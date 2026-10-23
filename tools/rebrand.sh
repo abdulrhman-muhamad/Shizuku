@@ -59,6 +59,13 @@ for f in "$RES"/values*/strings.xml; do
   rep "$f" 's/Shizuku/$ENV{BRAND}/g;'
 done
 
+# Right-to-left languages: a paragraph takes its direction from its first strong letter, so a value
+# that now starts with the Latin brand would be laid out left-to-right (words out of order). Prefix it
+# with a RIGHT-TO-LEFT MARK. Idempotent: once the mark is there the pattern no longer matches.
+for l in ar fa iw ur; do
+  rep "$RES/values-$l/strings.xml" 's/(<(?:string|item)\b[^>]*>(?:<!\[CDATA\[)?\s*)(?=\Q$ENV{BRAND}\E)/$1\x{200F}/g;'
+done
+
 rep manager/src/main/assets/rish 's/in Shizuku app/in the $ENV{BRAND} app/g;'
 
 echo "Remaining user-visible occurrences (expect none):"

@@ -201,7 +201,7 @@
     <string name="snackbar_action_fix">يصلح</string>
     <!-- Toast -->
     <string name="toast_no_email_app">لم يتم العثور على تطبيق البريد الإلكتروني</string>
-    <string name="toast_shizuku_already_starting">WhtsAgent Helper بدأت بالفعل في الخلفية</string>
+    <string name="toast_shizuku_already_starting">‏WhtsAgent Helper بدأت بالفعل في الخلفية</string>
     <string name="toast_accessibility_tv_only">هذه الخدمة مدعومة فقط على أجهزة التلفزيون.</string>
     <string name="toast_pairing_timeout">انتهت مهلة خدمة إقران WhtsAgent Helper.</string>
     <!-- Dark Mode Setting Override -->
