@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO(brand): placeholder "WA" monogram. Replace with WhtsAgent logo art.
+     Adaptive-icon canvas is 108dp; keep artwork inside the centre 66dp safe zone. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:pathData="M30,42 L35,66 L42,50 L49,66 L54,42 M58,66 L68,42 L78,66 M61.33,58 L74.67,58"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

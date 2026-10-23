@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO(brand): Android TV launcher banner (320x180dp), placeholder "WA" monogram. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="320dp"
+    android:height="180dp"
+    android:viewportWidth="320"
+    android:viewportHeight="180">
+    <path
+        android:fillColor="#25D366"
+        android:pathData="M0,0h320v180h-320z" />
+    <path
+        android:pathData="M80,50 L96.67,130 L120,76.67 L143.33,130 L160,50 M173.33,130 L206.67,50 L240,130 M184.44,103.33 L228.89,103.33"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="18.3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>
