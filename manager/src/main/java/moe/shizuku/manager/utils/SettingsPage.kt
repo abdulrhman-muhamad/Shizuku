@@ -26,8 +26,9 @@ sealed class SettingsPage(
 
         object WirelessDebugging : Developer() {
             override fun buildIntent(context: Context): Intent {
-                if (Build.BRAND in setOf("xiaomi", "redmi", "poco")) {
-                    HighlightWirelessDebugging.buildIntent(context)
+                // Build.BRAND is capitalised on real devices ("Redmi", "POCO", "Xiaomi").
+                if (Build.BRAND.lowercase() in setOf("xiaomi", "redmi", "poco")) {
+                    return HighlightWirelessDebugging.buildIntent(context)
                 }
 
                 return Intent(TileService.ACTION_QS_TILE_PREFERENCES).apply {
