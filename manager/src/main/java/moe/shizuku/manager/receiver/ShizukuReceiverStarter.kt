@@ -140,12 +140,16 @@ object ShizukuReceiverStarter {
         val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         nm.createNotificationChannel(channel)
 
-        val webpageIntent = Intent(Intent.ACTION_VIEW, HelpURLs.TROUBLESHOOTING_BOOT.toUri())
-        val pendingWebpageIntent = PendingIntent.getActivity(
-            context, 0, webpageIntent, PendingIntent.FLAG_IMMUTABLE
-        )
+        // With no troubleshooting page, the notification has no tap action and loses its "Tap to learn…" sentence.
+        val help = HelpURLs.TROUBLESHOOTING_BOOT
+        val pendingWebpageIntent = help?.let {
+            PendingIntent.getActivity(
+                context, 0, Intent(Intent.ACTION_VIEW, it.toUri()), PendingIntent.FLAG_IMMUTABLE
+            )
+        }
 
         val msg = context.getString(R.string.wadb_permission_error_notification_content)
+            .let { if (help != null) it else HelpURLs.withoutLastSentence(it) }
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_system_icon)

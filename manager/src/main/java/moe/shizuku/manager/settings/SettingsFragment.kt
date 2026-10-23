@@ -36,6 +36,7 @@ import moe.shizuku.manager.R
 import moe.shizuku.manager.ShizukuSettings
 import moe.shizuku.manager.ShizukuSettings.Keys.KEY_BLACK_NIGHT_THEME
 import moe.shizuku.manager.ShizukuSettings.Keys.KEY_CATEGORY_ADVANCED
+import moe.shizuku.manager.ShizukuSettings.Keys.KEY_CATEGORY_SUPPORT
 import moe.shizuku.manager.ShizukuSettings.Keys.KEY_HELP
 import moe.shizuku.manager.ShizukuSettings.Keys.KEY_LEGACY_PAIRING
 import moe.shizuku.manager.ShizukuSettings.Keys.KEY_NIGHT_MODE
@@ -325,11 +326,14 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
             } else isVisible = false
         }
 
+        // Help and bug reports lead to NLL until WhtsAgent has its own site (see HelpURLs).
+        helpPreference.isVisible = HelpURLs.HELP != null
         helpPreference.setOnPreferenceClickListener {
-            CustomTabsHelper.launchUrlOrCopy(context, HelpURLs.HELP)
+            HelpURLs.HELP?.let { CustomTabsHelper.launchUrlOrCopy(context, it) }
             true
         }
 
+        reportBugPreference.isVisible = HelpURLs.BUG_REPORTS_ENABLED
         reportBugPreference.setOnPreferenceClickListener {
             BugReportDialog().show(parentFragmentManager, "BugReportDialog")
             true
@@ -340,6 +344,8 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         }
 
         advancedCategory.isVisible = legacyPairingPreference.isVisible
+        findPreference<PreferenceCategory>(KEY_CATEGORY_SUPPORT)?.isVisible =
+            helpPreference.isVisible || reportBugPreference.isVisible
     }
 
 

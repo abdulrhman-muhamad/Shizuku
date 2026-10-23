@@ -124,17 +124,21 @@ class WatchdogService : Service() {
         )
         nm.createNotificationChannel(channel)
 
-        val learnMoreIntent = Intent(Intent.ACTION_VIEW).apply {
-            data = HelpURLs.TROUBLESHOOTING_STOPPING.toUri()
+        // With no troubleshooting page, the notification has no tap action and loses its "Tap to learn…" sentence.
+        val help = HelpURLs.TROUBLESHOOTING_STOPPING
+        val learnMorePendingIntent = help?.let {
+            val learnMoreIntent = Intent(Intent.ACTION_VIEW).apply { data = it.toUri() }
+            PendingIntent.getActivity(this, 0, learnMoreIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         }
-        val learnMorePendingIntent = PendingIntent.getActivity(this, 0, learnMoreIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        val crashedText = getString(R.string.watchdog_shizuku_crashed_text)
+            .let { if (help != null) it else HelpURLs.withoutLastSentence(it) }
 
         val disableIntent = SettingsPage.Notifications.NotificationChannel.buildIntent(applicationContext)
         val disablePendingIntent = PendingIntent.getActivity(this, 0, disableIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
 
         val notification = NotificationCompat.Builder(this, channelId)
             .setContentTitle(getString(R.string.watchdog_shizuku_crashed_title))
-            .setContentText(getString(R.string.watchdog_shizuku_crashed_text))
+            .setContentText(crashedText)
             .setSmallIcon(R.drawable.ic_system_icon)
             .setContentIntent(learnMorePendingIntent)
             .setAutoCancel(true)

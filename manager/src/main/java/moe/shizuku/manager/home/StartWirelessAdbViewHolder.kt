@@ -97,14 +97,18 @@ class StartWirelessAdbViewHolder(binding: HomeStartWirelessAdbBinding, root: Vie
         }
 
         if (EnvironmentUtils.isTlsSupported()) {
+            val guide = HelpURLs.ADB_ANDROID11
+            binding.button3.isVisible = guide != null
             binding.button3.setOnClickListener { v: View ->
-                CustomTabsHelper.launchUrlOrCopy(v.context, HelpURLs.ADB_ANDROID11)
+                guide?.let { CustomTabsHelper.launchUrlOrCopy(v.context, it) }
             }
             binding.button2.setOnClickListener { v: View ->
                 onPairClicked(v.context)
             }
             binding.text1.movementMethod = LinkMovementMethod.getInstance()
-            binding.text1.text = context.getString(R.string.home_wireless_adb_description)
+            val description = context.getString(R.string.home_wireless_adb_description)
+            // Its last sentence points at the step-by-step guide; drop it while the guide is hidden.
+            binding.text1.text = (if (guide != null) description else HelpURLs.withoutLastSentence(description))
                 .toHtml()
         } else {
             binding.text1.text = context.getString(R.string.home_wireless_adb_description_pre_11)

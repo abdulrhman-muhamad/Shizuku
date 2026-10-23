@@ -58,7 +58,7 @@ class StartAdbViewHolder(binding: HomeStartAdbBinding, root: View) : BaseViewHol
                 .show()
         }
         binding.text1.movementMethod = LinkMovementMethod.getInstance()
-        binding.text1.text = context.getString(R.string.home_adb_description, HelpURLs.ADB)
+        binding.text1.text = HelpURLs.linkedText(context, R.string.home_adb_description, HelpURLs.ADB)
             .toHtml()
     }
 }

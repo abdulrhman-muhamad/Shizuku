@@ -28,6 +28,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
+import moe.shizuku.manager.HelpURLs
 import moe.shizuku.manager.R
 import moe.shizuku.manager.ShizukuSettings
 import moe.shizuku.manager.adb.AdbMdns
@@ -187,15 +188,18 @@ class AdbStartWorker(context: Context, params: WorkerParameters) : CoroutineWork
 
         val nb = NotificationCompat.Builder(context, CHANNEL_ID)
 
-        val msgNotif = "$e. ${context.getString(R.string.wadb_error_notify_dev)}"
+        // "Tap to notify the developer" opens the bug-report dialog; offer it only when reports have a destination.
+        val msgNotif = if (HelpURLs.BUG_REPORTS_ENABLED) "$e. ${context.getString(R.string.wadb_error_notify_dev)}" else "$e"
 
-        val intent = Intent(context, BugReportDialogActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-        val pendingIntent = PendingIntent.getActivity(
-            context, 0, intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
+        val pendingIntent = if (HelpURLs.BUG_REPORTS_ENABLED) {
+            val intent = Intent(context, BugReportDialogActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            PendingIntent.getActivity(
+                context, 0, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+        } else null
 
         val notification = nb
             .setSmallIcon(R.drawable.ic_system_icon)
