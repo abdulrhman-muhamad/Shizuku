@@ -26,8 +26,11 @@ object HelpURLs {
     val ISSUES: String? = null
     val NEW_ISSUE: String? = null
 
-    /** The bug-report dialog only offers NLL destinations today; show its entry points once ours exist. */
-    val BUG_REPORTS_ENABLED: Boolean get() = NEW_ISSUE != null
+    /**
+     * Bug reports always have a destination (support_email). These pages are only what the report
+     * dialog asks users to check first; with none of them, "Report a bug" opens the email directly.
+     */
+    val HAS_BUG_REPORT_PAGES: Boolean get() = listOf(LATEST_VERSION, HELP, ISSUES, NEW_ISSUE).any { it != null }
 
     val SUI = "https://github.com/RikkaApps/Sui"
     val RISH = "https://github.com/RikkaApps/Shizuku-API/tree/master/rish"

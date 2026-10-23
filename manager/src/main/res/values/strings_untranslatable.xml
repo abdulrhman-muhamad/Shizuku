@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">WhtsAgent Helper</string>
-    <!-- TODO(brand): bug-report emails still go to NLL. Replace with WhtsAgent's support address.
-         Help/troubleshooting links live in HelpURLs.kt. -->
-    <string name="support_email" translatable="false">cb@nllapps.com</string>
+    <!-- Bug reports (Settings > Report a bug, ADB start-failure notification). Links live in HelpURLs.kt. -->
+    <string name="support_email" translatable="false">info@whtsagent.com</string>
     <string name="translation_url" translatable="false">https://translate.nllapps.com/projects/shizuku/</string>
 
     <string name="about_attribution" translatable="false"><![CDATA[Based on <b><a href="%s">Shizuku</a></b>, licensed under the Apache License 2.0]]></string>

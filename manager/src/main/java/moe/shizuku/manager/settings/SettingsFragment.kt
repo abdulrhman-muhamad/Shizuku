@@ -326,16 +326,16 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
             } else isVisible = false
         }
 
-        // Help and bug reports lead to NLL until WhtsAgent has its own site (see HelpURLs).
+        // Help is hidden until WhtsAgent has its own site (see HelpURLs); bug reports go to support_email.
         helpPreference.isVisible = HelpURLs.HELP != null
         helpPreference.setOnPreferenceClickListener {
             HelpURLs.HELP?.let { CustomTabsHelper.launchUrlOrCopy(context, it) }
             true
         }
 
-        reportBugPreference.isVisible = HelpURLs.BUG_REPORTS_ENABLED
         reportBugPreference.setOnPreferenceClickListener {
-            BugReportDialog().show(parentFragmentManager, "BugReportDialog")
+            if (HelpURLs.HAS_BUG_REPORT_PAGES) BugReportDialog().show(parentFragmentManager, "BugReportDialog")
+            else BugReportDialog.sendEmail(context)
             true
         }
 

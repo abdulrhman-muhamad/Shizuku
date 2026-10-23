@@ -21,8 +21,33 @@ import moe.shizuku.manager.ktx.applyTemplateArgs
 import moe.shizuku.manager.utils.CustomTabsHelper
 import moe.shizuku.manager.worker.AdbStartWorker
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 
 class BugReportDialog : DialogFragment() {
+
+    companion object {
+        /** Opens a pre-filled bug-report email to support_email. Returns false if no email app exists. */
+        fun sendEmail(context: Context): Boolean {
+            val plainBody = """
+                Please describe the bug. Include steps to reproduce if possible, as well as any relevant images/logs.
+
+                Device: ${Build.MANUFACTURER} ${Build.MODEL}
+                Android Version: ${Build.VERSION.RELEASE}
+                ${context.getString(R.string.app_name)} Version: ${BuildConfig.VERSION_NAME}
+            """.trimIndent()
+
+            val intent = Intent(Intent.ACTION_SENDTO, ("mailto:" + context.getString(R.string.support_email) +
+                    "?subject=" + Uri.encode("[ISSUE TITLE]") +
+                    "&body=" + Uri.encode(plainBody)).toUri())
+            return try {
+                context.startActivity(intent)
+                true
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(context, context.getString(R.string.toast_no_email_app), Toast.LENGTH_SHORT).show()
+                false
+            }
+        }
+    }
 
     private lateinit var binding: BugReportDialogBinding
 
@@ -30,46 +55,32 @@ class BugReportDialog : DialogFragment() {
         val context = requireContext()
         binding = BugReportDialogBinding.inflate(layoutInflater)
 
-        val updateLink = getString(R.string.bug_report_dialog_link_update)
-            .asLink(HelpURLs.LATEST_VERSION.orEmpty())
-
-        val wikiLink = getString(R.string.bug_report_dialog_link_wiki)
-            .asLink(HelpURLs.HELP.orEmpty())
-
-        val issuesLink = getString(R.string.bug_report_dialog_link_issues)
-            .asLink(HelpURLs.ISSUES.orEmpty())
-
         binding.apply {
-            updateText.applyTemplateArgs(updateLink)
-            wikiText.applyTemplateArgs(wikiLink)
-            issuesText.applyTemplateArgs(issuesLink)
+            // Each "please check first" row needs its page; hide rows (and the header) without one.
+            HelpURLs.LATEST_VERSION?.let { updateText.applyTemplateArgs(getString(R.string.bug_report_dialog_link_update).asLink(it)) }
+            HelpURLs.HELP?.let { wikiText.applyTemplateArgs(getString(R.string.bug_report_dialog_link_wiki).asLink(it)) }
+            HelpURLs.ISSUES?.let { issuesText.applyTemplateArgs(getString(R.string.bug_report_dialog_link_issues).asLink(it)) }
+            updateText.isVisible = HelpURLs.LATEST_VERSION != null
+            wikiText.isVisible = HelpURLs.HELP != null
+            issuesText.isVisible = HelpURLs.ISSUES != null
+            val anyCheck = updateText.isVisible || wikiText.isVisible || issuesText.isVisible
+            beforeText.isVisible = anyCheck
+            divider.isVisible = anyCheck
+
             methodText.applyTemplateArgs("GitHub")
+            methodText.isVisible = HelpURLs.NEW_ISSUE != null
+            methodText2.isVisible = HelpURLs.NEW_ISSUE != null
         }
 
-        return MaterialAlertDialogBuilder(context)
+        val builder = MaterialAlertDialogBuilder(context)
             .setTitle(R.string.settings_report_bug)
             .setView(binding.root)
-            .setPositiveButton("GitHub") { _, _ ->
-                HelpURLs.NEW_ISSUE?.let { CustomTabsHelper.launchUrlOrCopy(context, it) }
-            }
+        HelpURLs.NEW_ISSUE?.let { url ->
+            builder.setPositiveButton("GitHub") { _, _ -> CustomTabsHelper.launchUrlOrCopy(context, url) }
+        }
+        return builder
             .setNegativeButton(R.string.bug_report_dialog_button_email) { _, _ ->
-                val plainBody = """
-                    Please describe the bug. Include steps to reproduce if possible, as well as any relevant images/logs.
-
-                    Device: ${Build.MANUFACTURER} ${Build.MODEL}
-                    Android Version: ${Build.VERSION.RELEASE}
-                    ${context.getString(R.string.app_name)} Version: ${BuildConfig.VERSION_NAME}
-                """.trimIndent()
-
-                val intent = Intent(Intent.ACTION_SENDTO, ("mailto:" + context.getString(R.string.support_email) +
-                        "?subject=" + Uri.encode("[ISSUE TITLE]") +
-                        "&body=" + Uri.encode(plainBody)).toUri())
-                try {
-                    context.startActivity(intent)
-                    dismiss()
-                } catch (e: ActivityNotFoundException) {
-                    Toast.makeText(context, context.getString(R.string.toast_no_email_app), Toast.LENGTH_SHORT).show()
-                }
+                if (sendEmail(context)) dismiss()
             }
             .setNeutralButton(android.R.string.cancel) { dialog, _ ->
                 dialog.cancel()
