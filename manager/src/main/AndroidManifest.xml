@@ -63,6 +63,13 @@
         android:name="${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         tools:node="remove" />
 
+    <queries>
+        <!-- WhtsAgent Phone, for the setup screen's "Open WhtsAgent Phone" button (Android 11+ package
+             visibility). Keep in step with allowedClientPackages in gradle/libs.versions.toml. -->
+        <package android:name="com.whtsagent.dialer" />
+        <package android:name="com.whtsagent.dialer.debug" />
+    </queries>
+
     <application
         android:name=".ShizukuApplication"
         android:allowBackup="true"
@@ -99,6 +106,9 @@
         <activity
             android:name=".adb.AdbPairingTutorialActivity"
             android:label="@string/adb_pairing" />
+        <activity
+            android:name=".setup.SetupActivity"
+            android:label="@string/setup_title" />
         <activity
             android:name=".shell.ShellTutorialActivity"
             android:label="@string/home_terminal_title" />

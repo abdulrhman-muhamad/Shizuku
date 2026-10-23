@@ -27,10 +27,19 @@ class HomeAdapter(private val homeModel: HomeViewModel, private val appsModel: A
         private const val ID_LEARN_MORE = 6L
         private const val ID_ADB_PERMISSION_LIMITED = 7L
         private const val ID_AUTOMATION = 8L
+        private const val ID_SETUP = 9L
+        private const val ID_ADVANCED = 10L
     }
 
     override fun onCreateCreatorPool(): IndexCreatorPool {
         return IndexCreatorPool()
+    }
+
+    // WhtsAgent: the start methods and automation are for technicians; most users only need Setup.
+    private var showAdvanced = false
+    private val advancedCreator = AdvancedToggleViewHolder.creator {
+        showAdvanced = !showAdvanced
+        updateData()
     }
 
     fun updateData() {
@@ -43,12 +52,22 @@ class HomeAdapter(private val homeModel: HomeViewModel, private val appsModel: A
         clear()
         addItem(ServerStatusViewHolder.CREATOR, status, ID_STATUS)
 
+        if (!running && isPrimaryUser) {
+            addItem(SetupCardViewHolder.CREATOR, null, ID_SETUP)
+        }
+
         if (adbPermission) {
             addItem(ManageAppsViewHolder.CREATOR, status to grantedCount, ID_APPS)
         }
 
         if (running && !adbPermission) {
             addItem(AdbPermissionLimitedViewHolder.CREATOR, status, ID_ADB_PERMISSION_LIMITED)
+        }
+
+        addItem(advancedCreator, showAdvanced, ID_ADVANCED)
+        if (!showAdvanced) {
+            notifyDataSetChanged()
+            return
         }
 
         if (isPrimaryUser) {

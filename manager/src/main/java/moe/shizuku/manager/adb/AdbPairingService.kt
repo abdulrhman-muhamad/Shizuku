@@ -1,5 +1,6 @@
 package moe.shizuku.manager.adb
 
+import moe.shizuku.manager.setup.SetupState
 import android.annotation.TargetApi
 import android.app.*
 import android.content.Context
@@ -183,6 +184,7 @@ class AdbPairingService : Service() {
 
         if (success) {
             Log.i(tag, "Pair succeed")
+            SetupState.adbPaired = true
 
             title = getString(R.string.notification_adb_pairing_succeed_title)
             text = getString(R.string.notification_adb_pairing_succeed_text)

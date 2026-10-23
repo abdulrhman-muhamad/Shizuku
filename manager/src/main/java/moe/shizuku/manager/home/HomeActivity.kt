@@ -1,5 +1,7 @@
 package moe.shizuku.manager.home
 
+import moe.shizuku.manager.setup.SetupState
+import moe.shizuku.manager.setup.SetupActivity
 import android.app.NotificationManager
 import android.content.Context
 import android.content.DialogInterface
@@ -101,6 +103,13 @@ abstract class HomeActivity : AppBarActivity() {
 
         ShizukuStateMachine.addListener(stateListener)
 
+        // WhtsAgent: a fresh install opens the guided setup (also where WhtsAgent Phone's "Activate"
+        // lands). Once the helper has run, the home screen's Setup card is enough.
+        if (savedInstanceState == null && !SetupState.autoConfigured &&
+            ShizukuStateMachine.update() != ShizukuStateMachine.State.RUNNING
+        ) {
+            startActivity(Intent(this, SetupActivity::class.java))
+        }
     }
 
 
