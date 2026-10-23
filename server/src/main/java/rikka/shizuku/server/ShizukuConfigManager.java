@@ -159,12 +159,16 @@ public class ShizukuConfigManager extends ConfigManager {
                 }
 
                 int uid = pi.applicationInfo.uid;
-                boolean allowed;
-                try {
-                    allowed = Android17Compat.checkPermission(PERMISSION, uid) == PackageManager.PERMISSION_GRANTED;
-                } catch (Throwable e) {
-                    LOGGER.w("checkPermission");
-                    continue;
+                // ClientAllowlist decides, not the runtime grant: that grant is lost whenever the app
+                // that defines the permission is uninstalled (e.g. moving from the old package), which
+                // used to silently de-authorize the dialer at the next server start.
+                boolean allowed = ClientAllowlist.isAllowed(pi.packageName, userId);
+                if (allowed) {
+                    try {
+                        Android17Compat.grantRuntimePermission(pi.packageName, PERMISSION, userId);
+                    } catch (Throwable e) {
+                        LOGGER.w(e, "grant %s to %s", PERMISSION, pi.packageName);
+                    }
                 }
 
                 List<String> packages = new ArrayList<>();

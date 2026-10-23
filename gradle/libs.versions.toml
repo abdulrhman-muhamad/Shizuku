@@ -9,6 +9,14 @@ appPackageName = "com.whtsagent.helper"
 # and the same key the client's Shizuku-API library reads. Kept at the original Shizuku value
 # so existing clients keep working. See plan/03-full-independence.md before changing.
 appExtraBinder ="moe.shizuku.privileged.api.intent.extra.BINDER"
+# The only apps WhtsAgent Helper serves (server/.../ClientAllowlist.java). A client must have one of
+# these package names AND be signed with one of these certificates (SHA-256 of the signing cert,
+# hex, comma-separated; `apksigner verify --print-certs app.apk`). Allowed apps never see a prompt;
+# every other app is refused. Comma-separated, no spaces needed.
+allowedClientPackages = "com.whtsagent.dialer,com.whtsagent.dialer.debug"
+# TODO(release): add the WhtsAgent Phone RELEASE signing cert digest — until then release-signed
+# dialer builds are refused. Current value is the debug keystore that signs com.whtsagent.dialer.debug.
+allowedClientCertSha256 = "b683b8b4d356cc064f48b07a447086441de82d9fd2318cf83e3b0768c84e3f5a"
 
 
 

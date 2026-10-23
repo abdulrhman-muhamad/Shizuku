@@ -16,6 +16,12 @@ android {
         buildConfigField(
                 "String", "EXTRA_BINDER", "\"${libs.versions.appExtraBinder.get()}\""
         )
+        buildConfigField(
+                "String", "ALLOWED_CLIENT_PACKAGES", "\"${libs.versions.allowedClientPackages.get()}\""
+        )
+        buildConfigField(
+                "String", "ALLOWED_CLIENT_CERTS", "\"${libs.versions.allowedClientCertSha256.get()}\""
+        )
     }
 }
 

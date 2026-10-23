@@ -35,6 +35,7 @@ import androidx.annotation.Nullable;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -53,6 +54,7 @@ import rikka.parcelablelist.ParcelableListSlice;
 import rikka.rish.RishConfig;
 import rikka.shizuku.ShizukuApiConstants;
 import rikka.shizuku.server.api.IContentProviderUtils;
+import rikka.shizuku.server.ktx.HandlerKt;
 import rikka.shizuku.server.util.Android17Compat;
 import rikka.shizuku.server.util.HandlerUtil;
 import rikka.shizuku.server.util.InstalledPackagesCompat;
@@ -195,7 +197,8 @@ public class ShizukuService extends Service<ShizukuUserServiceManager, ShizukuCl
         if (UserHandleCompat.getAppId(callingUid) == managerAppId) {
             return true;
         }
-        if (clientRecord == null && checkCallingPermission() == PackageManager.PERMISSION_GRANTED) {
+        if (clientRecord == null && checkCallingPermission() == PackageManager.PERMISSION_GRANTED
+                && ClientAllowlist.isAllowedUid(callingUid)) {
             return true;
         }
         return false;
@@ -252,6 +255,16 @@ public class ShizukuService extends Service<ShizukuUserServiceManager, ShizukuCl
 
         LOGGER.d("attachApplication: %s %d %d", requestPackageName, callingUid, callingPid);
 
+        if (!isManager && clientRecord != null) {
+            // WhtsAgent Helper serves only ClientAllowlist apps: they are allowed without a prompt,
+            // anything else is refused whatever its saved config or runtime grant says.
+            int userId = UserHandleCompat.getUserId(callingUid);
+            clientRecord.allowed = ClientAllowlist.isAllowed(requestPackageName, userId);
+            if (clientRecord.allowed) {
+                autoAllow(callingUid, requestPackageName, userId);
+            }
+        }
+
         int replyServerVersion = ShizukuApiConstants.SERVER_VERSION;
         if (apiVersion == -1) {
             // ShizukuBinderWrapper has adapted API v13 in dev.rikka.shizuku:api 12.2.0, however
@@ -286,6 +299,20 @@ public class ShizukuService extends Service<ShizukuUserServiceManager, ShizukuCl
 
     @Override
     public void showPermissionConfirmation(int requestCode, @NonNull ClientRecord clientRecord, int callingUid, int callingPid, int userId) {
+        // No prompt: ClientAllowlist apps are allowed, everything else is refused.
+        boolean allowed = ClientAllowlist.isAllowed(clientRecord.packageName, userId);
+        if (allowed) {
+            clientRecord.allowed = true;
+            autoAllow(callingUid, clientRecord.packageName, userId);
+        } else {
+            LOGGER.i("refused permission request from %s: not an allowed WhtsAgent app", clientRecord.packageName);
+        }
+        clientRecord.dispatchRequestPermissionResult(requestCode, allowed);
+    }
+
+    /** Upstream's confirmation dialog. Unused while {@link ClientAllowlist} decides every request. */
+    @SuppressWarnings("unused")
+    private void showPermissionConfirmationDialog(int requestCode, @NonNull ClientRecord clientRecord, int callingUid, int callingPid, int userId) {
         ApplicationInfo ai = Android17Compat.getApplicationInfo(clientRecord.packageName, 0, userId);
         if (ai == null) {
             return;
@@ -323,7 +350,8 @@ public class ShizukuService extends Service<ShizukuUserServiceManager, ShizukuCl
             return;
         }
 
-        boolean allowed = data.getBoolean(REQUEST_PERMISSION_REPLY_ALLOWED);
+        boolean allowed = data.getBoolean(REQUEST_PERMISSION_REPLY_ALLOWED)
+                && ClientAllowlist.isAllowedUid(requestUid);
         boolean onetime = data.getBoolean(REQUEST_PERMISSION_REPLY_IS_ONETIME);
 
         LOGGER.i("dispatchPermissionConfirmationResult: uid=%d, pid=%d, requestCode=%d, allowed=%s, onetime=%s",
@@ -366,7 +394,27 @@ public class ShizukuService extends Service<ShizukuUserServiceManager, ShizukuCl
         }
     }
 
+    /** Records an allowlisted client as allowed and grants it the runtime permission, once. */
+    private void autoAllow(int uid, String packageName, int userId) {
+        ShizukuConfig.PackageEntry entry = configManager.find(uid);
+        if (entry != null && entry.isAllowed()) {
+            return;
+        }
+        configManager.update(uid, Collections.singletonList(packageName), ConfigManager.MASK_PERMISSION, ConfigManager.FLAG_ALLOWED);
+        try {
+            Android17Compat.grantRuntimePermission(packageName, PERMISSION, userId);
+        } catch (Throwable tr) {
+            LOGGER.w(tr, "grant %s to %s", PERMISSION, packageName);
+        }
+        LOGGER.i("auto-allowed %s (uid %d)", packageName, uid);
+    }
+
     private int getFlagsForUidInternal(int uid, int mask, boolean allowRuntimePermission) {
+        if ((mask & ConfigManager.MASK_PERMISSION) != 0) {
+            // Permission is decided by ClientAllowlist, not by saved flags or runtime grants.
+            return ClientAllowlist.isAllowedUid(uid) ? (ConfigManager.FLAG_ALLOWED & mask) : 0;
+        }
+
         ShizukuConfig.PackageEntry entry = configManager.find(uid);
         if (entry != null) {
             return entry.flags & mask;
@@ -405,6 +453,13 @@ public class ShizukuService extends Service<ShizukuUserServiceManager, ShizukuCl
     public void updateFlagsForUid(int uid, int mask, int value) throws RemoteException {
         if (UserHandleCompat.getAppId(Binder.getCallingUid()) != managerAppId) {
             LOGGER.w("updateFlagsForUid is allowed to be called only from the manager");
+            return;
+        }
+
+        if ((mask & ConfigManager.MASK_PERMISSION) != 0) {
+            // Who may use the helper is fixed by ClientAllowlist; toggles in the manager can't change it
+            // (revoking would also force-stop the dialer, and it would be re-allowed on its next attach).
+            LOGGER.w("updateFlagsForUid: permission for uid %d is decided by ClientAllowlist; ignored", uid);
             return;
         }
 
@@ -564,6 +619,10 @@ public class ShizukuService extends Service<ShizukuUserServiceManager, ShizukuCl
     }
 
     static boolean sendBinderToUserApp(Binder binder, String packageName, int userId) {
+        if (!MANAGER_APPLICATION_ID.equals(packageName) && !ClientAllowlist.isAllowed(packageName, userId)) {
+            LOGGER.i("not sending binder to %s: not an allowed WhtsAgent app", packageName);
+            return false;
+        }
         try {
             DeviceIdleControllerApis.addPowerSaveTempWhitelistApp(packageName, 30 * 1000, userId,
                     316/* PowerExemptionManager#REASON_SHELL */, "shell");
