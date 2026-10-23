@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a bug of Shizuku
+description: Report a bug of WhtsAgent Helper
 labels: bug
 
 body:
@@ -8,13 +8,11 @@ body:
     attributes:
       label: Before You Begin
       options:
-        - label: I am reporting an issue with Shizuku itself, NOT an issue about compatibility with another app
+        - label: I am reporting an issue with WhtsAgent Helper itself, NOT an issue about compatibility with another app
           required: true
-        - label: I read the [wiki](https://github.com/NLLAPPS/Shizuku/wiki/Troubleshooting) and followed all relevant troubleshooting steps
+        - label: I searched through all [issues](https://github.com/abdulrhman-muhamad/Shizuku/issues) and confirmed that this is a new bug
           required: true
-        - label: I searched through all [issues](https://github.com/NLLAPPS/Shizuku/issues) and confirmed that this is a new bug
-          required: true
-        - label: I am using the latest version of Shizuku
+        - label: I am using the latest version of WhtsAgent Helper
           required: true
 
   - type: checkboxes
@@ -22,9 +20,9 @@ body:
     attributes:
       label: Requirements
       options:
-        - label: Shizuku is not running in a virtual environment or broken ROM (e.g., GrapheneOS)
+        - label: WhtsAgent Helper is not running in a virtual environment or broken ROM (e.g., GrapheneOS)
           required: true
-        - label: Xposed is not installed/enabled for Shizuku
+        - label: Xposed is not installed/enabled for WhtsAgent Helper
           required: true  
 
   - type: dropdown
@@ -41,7 +39,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: Shizuku Version
+      label: WhtsAgent Helper Version
     validations:
       required: true 
 
