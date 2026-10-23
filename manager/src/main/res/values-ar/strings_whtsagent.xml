@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- WhtsAgent-only strings, Arabic. Menu names follow Arabic Android Settings labels. -->
+<resources>
+    <!-- Guided setup -->
+    <string name="setup_title">إعداد WhtsAgent Helper</string>
+    <string name="setup_intro_wireless">خطوات قليلة لمرة واحدة فقط، وبعدها يعمل المساعد تلقائياً. كل خطوة تُعلَّم كمكتملة عند رجوعك إلى هذه الشاشة.</string>
+    <string name="setup_intro_computer">هاتفك يعمل بنظام أندرويد %1$s. في هذا الإصدار يجب تشغيل WhtsAgent Helper من جهاز كمبيوتر بعد كل إعادة تشغيل للهاتف.</string>
+    <string name="setup_intro_root">هاتفك مزوّد بصلاحيات الروت، لذلك يكفي ضغطة واحدة لتشغيل المساعد.</string>
+    <string name="setup_step_done">تم</string>
+    <string name="setup_open_developer_options">فتح خيارات المطور</string>
+
+    <string name="setup_step_dev_title">تفعيل خيارات المطور</string>
+    <string name="setup_step_dev_body">افتح «حول الهاتف» واضغط على «رقم الإصدار» 7 مرات (في هواتف Xiaomi وRedmi وPOCO: «إصدار النظام» أو «إصدار MIUI»). أدخل رمز القفل إذا طُلب منك، ثم ارجع إلى هنا.</string>
+    <string name="setup_step_dev_button">فتح «حول الهاتف»</string>
+
+    <string name="setup_step_wadb_title">تفعيل تصحيح الأخطاء اللاسلكي</string>
+    <string name="setup_step_wadb_body">اتصل بشبكة Wi-Fi. ثم من «خيارات المطور» فعّل «تصحيح أخطاء USB» و«تصحيح الأخطاء اللاسلكي».</string>
+
+    <string name="setup_step_usb_title">تفعيل تصحيح أخطاء USB</string>
+    <string name="setup_step_usb_body">من «خيارات المطور» فعّل «تصحيح أخطاء USB».</string>
+
+    <string name="setup_step_pair_title">الإقران (مرة واحدة فقط)</string>
+    <string name="setup_step_pair_body">اضغط على عبارة «تصحيح الأخطاء اللاسلكي» نفسها (وليس على المفتاح)، ثم «إقران الجهاز باستخدام رمز الإقران». اكتب الرمز المكوّن من 6 أرقام في إشعار WhtsAgent Helper.</string>
+    <string name="setup_step_pair_button">بدء الإقران</string>
+
+    <string name="setup_step_start_title">تشغيل المساعد</string>
+    <string name="setup_step_start_body">اضغط «تشغيل». من الآن فصاعداً يعمل المساعد تلقائياً بعد إعادة تشغيل الهاتف (عند الاتصال بشبكة Wi-Fi).</string>
+    <string name="setup_step_start_button">تشغيل</string>
+
+    <string name="setup_step_computer_title">التشغيل من جهاز كمبيوتر</string>
+    <string name="setup_step_computer_body">وصّل الهاتف بالكمبيوتر عبر كابل USB ونفّذ هذا الأمر. كرّر ذلك بعد كل إعادة تشغيل للهاتف.\n\n%1$s</string>
+    <string name="setup_step_computer_button">نسخ الأمر</string>
+    <string name="setup_toast_copied">تم نسخ الأمر</string>
+
+    <string name="setup_step_root_title">التشغيل بصلاحيات الروت</string>
+    <string name="setup_step_root_body">اضغط «تشغيل» ووافق على طلب صلاحيات الروت عند ظهوره.</string>
+
+    <string name="setup_done_title">كل شيء جاهز</string>
+    <string name="setup_done_body_auto">يعمل WhtsAgent Helper الآن، وسيعمل تلقائياً بعد إعادة تشغيل الهاتف.</string>
+    <string name="setup_done_body_manual">يعمل WhtsAgent Helper الآن. شغّله مرة أخرى بعد كل إعادة تشغيل للهاتف.</string>
+    <string name="setup_done_button">فتح WhtsAgent Phone</string>
+
+    <!-- Home -->
+    <string name="home_setup_title">إعداد WhtsAgent Helper</string>
+    <string name="home_setup_summary">خطوات قليلة لمرة واحدة حتى يتمكن WhtsAgent Phone من تسجيل المكالمات.</string>
+    <string name="home_setup_button">بدء الإعداد</string>
+    <string name="home_advanced_title">خيارات متقدمة</string>
+    <string name="home_advanced_summary">طرق أخرى لتشغيل المساعد</string>
+
+    <!-- Application management -->
+    <string name="app_management_allowed_automatically">تطبيقات WhtsAgent مسموح لها تلقائياً.</string>
+</resources>

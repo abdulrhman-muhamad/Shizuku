@@ -1,5 +1,6 @@
 package moe.shizuku.manager.management
 
+import android.widget.Toast
 import android.content.pm.PackageInfo
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
@@ -47,6 +48,13 @@ class AppViewHolder(private val binding: AppListItemBinding) : BaseViewHolder<Pa
     private var loadIconJob: Job? = null
 
     override fun onClick(v: View) {
+        // WhtsAgent: the server's ClientAllowlist decides who may use the helper; this switch can't.
+        Toast.makeText(v.context, R.string.app_management_allowed_automatically, Toast.LENGTH_SHORT).show()
+    }
+
+    /** Upstream's allow/revoke toggle, kept for merges. The server ignores it (updateFlagsForUid). */
+    @Suppress("unused")
+    private fun toggle(v: View) {
         val context = v.context
         try {
             if (AuthorizationManager.granted(packageName, uid)) {
@@ -90,6 +98,7 @@ class AppViewHolder(private val binding: AppListItemBinding) : BaseViewHolder<Pa
             ai.loadLabel(pm)
         }
         pkg.text = ai.packageName
+        switchWidget.isEnabled = false
         switchWidget.isChecked = AuthorizationManager.granted(packageName, uid)
         root.visibility = if (ai.metaData != null && ai.metaData.getBoolean("moe.shizuku.client.V3_REQUIRES_ROOT")) View.VISIBLE else View.GONE
 

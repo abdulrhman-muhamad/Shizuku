@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- WhtsAgent-only strings (guided setup, simplified home). Kept out of strings.xml so upstream
+     merges and tools/rebrand.sh never touch them. Translated: values-ar. Others fall back here. -->
+<resources>
+    <!-- Guided setup -->
+    <string name="setup_title">Set up WhtsAgent Helper</string>
+    <string name="setup_intro_wireless">A few one-time steps. After that, the helper starts by itself. Each step ticks itself off when you come back to this screen.</string>
+    <string name="setup_intro_computer">Your phone runs Android %1$s. On this version, WhtsAgent Helper has to be started from a computer after every restart.</string>
+    <string name="setup_intro_root">Your phone is rooted, so one tap starts the helper.</string>
+    <string name="setup_step_done">Done</string>
+    <string name="setup_open_developer_options">Open Developer options</string>
+
+    <string name="setup_step_dev_title">Turn on Developer options</string>
+    <string name="setup_step_dev_body">Open About phone and tap Build number 7 times (on Xiaomi, Redmi and POCO: OS version or MIUI version). Enter your PIN if asked, then come back.</string>
+    <string name="setup_step_dev_button">Open About phone</string>
+
+    <string name="setup_step_wadb_title">Turn on Wireless debugging</string>
+    <string name="setup_step_wadb_body">Connect to Wi-Fi. Then in Developer options, turn on USB debugging and Wireless debugging.</string>
+
+    <string name="setup_step_usb_title">Turn on USB debugging</string>
+    <string name="setup_step_usb_body">In Developer options, turn on USB debugging.</string>
+
+    <string name="setup_step_pair_title">Pair (only once)</string>
+    <string name="setup_step_pair_body">Tap the words Wireless debugging (not the switch), then Pair device with pairing code. Type the 6-digit code into the WhtsAgent Helper notification.</string>
+    <string name="setup_step_pair_button">Start pairing</string>
+
+    <string name="setup_step_start_title">Start the helper</string>
+    <string name="setup_step_start_body">Tap Start. From now on, the helper starts by itself after the phone restarts (when it\'s on Wi-Fi).</string>
+    <string name="setup_step_start_button">Start</string>
+
+    <string name="setup_step_computer_title">Start from a computer</string>
+    <string name="setup_step_computer_body">Connect the phone to a computer by USB and run this command. Repeat after every restart.\n\n%1$s</string>
+    <string name="setup_step_computer_button">Copy command</string>
+    <string name="setup_toast_copied">Command copied</string>
+
+    <string name="setup_step_root_title">Start with root</string>
+    <string name="setup_step_root_body">Tap Start and allow root access when asked.</string>
+
+    <string name="setup_done_title">You\'re all set</string>
+    <string name="setup_done_body_auto">WhtsAgent Helper is running and starts by itself after a restart.</string>
+    <string name="setup_done_body_manual">WhtsAgent Helper is running. Start it again after each restart.</string>
+    <string name="setup_done_button">Open WhtsAgent Phone</string>
+
+    <!-- Home -->
+    <string name="home_setup_title">Set up WhtsAgent Helper</string>
+    <string name="home_setup_summary">A few one-time steps so WhtsAgent Phone can record calls.</string>
+    <string name="home_setup_button">Start setup</string>
+    <string name="home_advanced_title">Advanced options</string>
+    <string name="home_advanced_summary">Other ways to start the helper</string>
+
+    <!-- Application management -->
+    <string name="app_management_allowed_automatically">WhtsAgent apps are allowed automatically.</string>
+</resources>

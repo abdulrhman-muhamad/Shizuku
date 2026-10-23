@@ -60,7 +60,9 @@ object AuthorizationManager {
         } else {
             packages.addAll(getApplications(-1))
         }
-        return packages
+        // WhtsAgent: only apps the server's ClientAllowlist serves are shown; the rest are refused anyway.
+        val allowed = BuildConfig.ALLOWED_CLIENT_PACKAGES.split(',').map { it.trim() }
+        return packages.filter { it.packageName in allowed }
     }
 
     fun granted(packageName: String, uid: Int): Boolean {
