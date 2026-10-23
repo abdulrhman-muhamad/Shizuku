@@ -10,7 +10,7 @@
 
     <!-- Home - Adb -->
     <string name="home_adb_title"><![CDATA[कंप्यूटर से कनेक्ट करके शुरू करें।]]></string>
-    <string name="home_adb_description"><![CDATA[जिन डिवाइस में रूट नहीं है, उनके लिए आपको Shizuku शुरू करने के लिए adb का इस्तेमाल करना होगा (इसके लिए कंप्यूटर कनेक्शन ज़रूरी है)। डिवाइस हर बार रीस्टार्ट होने पर इस प्रोसेस को दोहराना होगा। कृपया <b><a href=\"%1$s\">हेल्प को पढ़ें</a></b>।]]></string>
+    <string name="home_adb_description"><![CDATA[जिन डिवाइस में रूट नहीं है, उनके लिए आपको WhtsAgent Helper शुरू करने के लिए adb का इस्तेमाल करना होगा (इसके लिए कंप्यूटर कनेक्शन ज़रूरी है)। डिवाइस हर बार रीस्टार्ट होने पर इस प्रोसेस को दोहराना होगा। कृपया <b><a href=\"%1$s\">हेल्प को पढ़ें</a></b>।]]></string>
     <string name="home_adb_button_view_help">हेल्प पढ़ें</string>
     <string name="home_adb_button_view_command">कमांड देखें</string>
     <string name="home_adb_dialog_view_command_message"><![CDATA[<font face="monospace">%1$s</font><br><br>* कुछ और बातें भी हैं, कृपया कन्फर्म करें कि आपने पहले हेल्प पढ़ ली है।]]></string>
@@ -19,13 +19,13 @@
 
     <!-- Home - Wireless Adb -->
     <string name="home_wireless_adb_title"><![CDATA[वायरलेस डीबगिंग के माध्यम से शुरू करें]]></string>
-    <string name="home_wireless_adb_description"><![CDATA[Android 11 या उससे ऊपर के वर्शन पर, आप वायरलेस डीबगिंग चालू कर सकते हैं और कंप्यूटर से कनेक्ट किए बिना सीधे अपने डिवाइस से Shizuku शुरू कर सकते हैं।<p>कृपया पहले स्टेप-बाय-स्टेप गाइड देखें।]]></string>
+    <string name="home_wireless_adb_description"><![CDATA[Android 11 या उससे ऊपर के वर्शन पर, आप वायरलेस डीबगिंग चालू कर सकते हैं और कंप्यूटर से कनेक्ट किए बिना सीधे अपने डिवाइस से WhtsAgent Helper शुरू कर सकते हैं।<p>कृपया पहले स्टेप-बाय-स्टेप गाइड देखें।]]></string>
     <string name="home_wireless_adb_description_pre_11"><![CDATA[एंड्रॉइड 11 से पहले, वायरलेस डीबगिंग को इनेबल करने के लिए कंप्यूटर से कनेक्ट करना ज़रूरी था।]]></string>
     <string name="home_wireless_adb_view_guide_button">स्टेप-बाय-स्टेप गाइड</string>
 
     <!-- Adb -->
     <string name="dialog_adb_discovery">वायरलेस डिबगिंग सेवा खोजी जा रही है</string>
-    <string name="dialog_adb_discovery_message">कृपया \"Developer options\" में \"Wireless debugging\" सक्षम करें। नेटवर्क बदलने पर \"Wireless debugging\" अपने आप बंद हो जाता है।\n\nध्यान दें, \"Developer options\" या \"USB debugging\" को बंद न करें, अन्यथा Shizuku बंद हो जाएगा। </string>
+    <string name="dialog_adb_discovery_message">कृपया \"Developer options\" में \"Wireless debugging\" सक्षम करें। नेटवर्क बदलने पर \"Wireless debugging\" अपने आप बंद हो जाता है।\n\nध्यान दें, \"Developer options\" या \"USB debugging\" को बंद न करें, अन्यथा WhtsAgent Helper बंद हो जाएगा। </string>
     <string name="dialog_adb_discovery_message_toggle_wireless_debugging">यदि यह खोज जारी रखता है, तो कृपया \"Wireless debugging\" को बंद करके फिर से चालू करें।</string>
     <string name="dialog_adb_port">पोर्ट</string>
     <string name="dialog_adb_invalid_port">पोर्ट 1 से 65535 के बीच का पूर्णांक होना चाहिए।</string>
@@ -43,19 +43,19 @@
     <string name="adb_pair_required">कृपया पहले पेयरिंग प्रक्रिया पूरी करें।</string>
     <string name="development_settings">Developer options</string>
     <string name="notification_settings">Notification options</string>
-    <string name="adb_pairing_tutorial_content_notification">Shizuku से आने वाली एक नोटिफ़िकेशन आपको पेयरिंग पूरी करने में मदद करेगी।</string>
+    <string name="adb_pairing_tutorial_content_notification">WhtsAgent Helper से आने वाली एक नोटिफ़िकेशन आपको पेयरिंग पूरी करने में मदद करेगी।</string>
     <string name="adb_pairing_tutorial_content_steps">\"Developer options\" - \"Wireless debugging\" में जाएँ। \"Pair device with pairing code\" पर टैप करें, आपको छह अंकों का कोड दिखाई देगा।</string>
     <string name="adb_pairing_tutorial_content_enter_pairing_code">पेयरिंग पूरी करने के लिए नोटिफ़िकेशन में कोड दर्ज करें।</string>
-    <string name="adb_pairing_tutorial_content_notification_blocked">पेयरिंग प्रक्रिया के लिए Shizuku से आने वाली नोटिफ़िकेशन के साथ इंटरैक्ट करना आवश्यक है। कृपया Shizuku को नोटिफ़िकेशन दिखाने की अनुमति दें।</string>
+    <string name="adb_pairing_tutorial_content_notification_blocked">पेयरिंग प्रक्रिया के लिए WhtsAgent Helper से आने वाली नोटिफ़िकेशन के साथ इंटरैक्ट करना आवश्यक है। कृपया WhtsAgent Helper को नोटिफ़िकेशन दिखाने की अनुमति दें।</string>
     <string name="adb_pairing_tutorial_content_miui">MIUI उपयोगकर्ताओं को सिस्टम सेटिंग्स में \"Notification\" - \"Notification shade\" से नोटिफ़िकेशन स्टाइल को \"Android\" पर बदलने की आवश्यकता हो सकती है।</string>
     <string name="adb_pairing_tutorial_content_miui_2">अन्यथा, आप नोटिफ़िकेशन से पेयरिंग कोड दर्ज नहीं कर पाएँगे।</string>
-    <string name="adb_pairing_tutorial_content_finish">Shizuku पर वापस जाएँ और Shizuku शुरू करें।</string>
-    <string name="adb_pairing_tutorial_content_network">Shizuku को स्थानीय नेटवर्क तक पहुँच की आवश्यकता है। यह नेटवर्क अनुमति द्वारा नियंत्रित होता है।</string>
-    <string name="adb_pairing_tutorial_content_network_limation_not_foreground">कुछ सिस्टम (जैसे MIUI) ऐप दिखाई न देने पर नेटवर्क तक पहुँच की अनुमति नहीं देते, भले ही ऐप मानक रूप से फ़ोरग्राउंड सर्विस का उपयोग करता हो। ऐसे सिस्टम में Shizuku के लिए बैटरी ऑप्टिमाइज़ेशन सुविधाएँ बंद कर दें।</string>
+    <string name="adb_pairing_tutorial_content_finish">WhtsAgent Helper पर वापस जाएँ और WhtsAgent Helper शुरू करें।</string>
+    <string name="adb_pairing_tutorial_content_network">WhtsAgent Helper को स्थानीय नेटवर्क तक पहुँच की आवश्यकता है। यह नेटवर्क अनुमति द्वारा नियंत्रित होता है।</string>
+    <string name="adb_pairing_tutorial_content_network_limation_not_foreground">कुछ सिस्टम (जैसे MIUI) ऐप दिखाई न देने पर नेटवर्क तक पहुँच की अनुमति नहीं देते, भले ही ऐप मानक रूप से फ़ोरग्राउंड सर्विस का उपयोग करता हो। ऐसे सिस्टम में WhtsAgent Helper के लिए बैटरी ऑप्टिमाइज़ेशन सुविधाएँ बंद कर दें।</string>
 
     <!-- Home - Root -->
     <string name="home_root_title"><![CDATA[शुरू करें (रूट किए गए डिवाइस के लिए)]]></string>
-    <string name="home_root_description"><![CDATA[इसके अलावा, Shizuku को बूट के समय अपने-आप शुरू किया जा सकता है। यदि ऐसा नहीं हो रहा है, तो जाँच करें कि कहीं आपके सिस्टम या किसी थर्ड-पार्टी टूल ने Shizuku को प्रतिबंधित तो नहीं किया है।<br>आप %s का संदर्भ ले सकते हैं।]]></string>
+    <string name="home_root_description"><![CDATA[इसके अलावा, WhtsAgent Helper को बूट के समय अपने-आप शुरू किया जा सकता है। यदि ऐसा नहीं हो रहा है, तो जाँच करें कि कहीं आपके सिस्टम या किसी थर्ड-पार्टी टूल ने WhtsAgent Helper को प्रतिबंधित तो नहीं किया है।<br>आप %s का संदर्भ ले सकते हैं।]]></string>
     <string name="home_root_button_start">शुरू करें</string>
     <string name="home_root_button_restart">पुनः शुरू करें</string>
 
@@ -66,29 +66,29 @@
         <item quantity="other"><![CDATA[%d अधिकृत एप्लिकेशन]]></item>
     </plurals>
     <string name="home_app_management_view_authorized_apps"><![CDATA[अधिकृत ऐप्स प्रबंधित करने के लिए टैप करें]]></string>
-    <string name="home_app_management_empty">जिन ऐप्स ने Shizuku का अनुरोध किया है या इसे घोषित किया है, वे यहाँ दिखाई देंगे।</string>
+    <string name="home_app_management_empty">जिन ऐप्स ने WhtsAgent Helper का अनुरोध किया है या इसे घोषित किया है, वे यहाँ दिखाई देंगे।</string>
 
     <!-- Home - Learn more -->
 
     <!-- Home - Adb permissions limited -->
     <string name="home_adb_is_limited_title">आपको एक अतिरिक्त चरण करना होगा</string>
-    <string name="home_adb_is_limited_description">आपके डिवाइस के निर्माता ने adb अनुमतियों को सीमित कर दिया है, जिसके कारण Shizuku का उपयोग करने वाले ऐप्स सही तरीके से काम नहीं करेंगे।\n\nआमतौर पर, इस सीमा को \"Developer options\" में कुछ सेटिंग्स समायोजित करके हटाया जा सकता है। इसे कैसे करना है, इसके विवरण के लिए कृपया मदद पढ़ें।\n\nइस परिवर्तन के प्रभावी होने के लिए आपको Shizuku को पुनः शुरू करना पड़ सकता है।</string>
+    <string name="home_adb_is_limited_description">आपके डिवाइस के निर्माता ने adb अनुमतियों को सीमित कर दिया है, जिसके कारण WhtsAgent Helper का उपयोग करने वाले ऐप्स सही तरीके से काम नहीं करेंगे।\n\nआमतौर पर, इस सीमा को \"Developer options\" में कुछ सेटिंग्स समायोजित करके हटाया जा सकता है। इसे कैसे करना है, इसके विवरण के लिए कृपया मदद पढ़ें।\n\nइस परिवर्तन के प्रभावी होने के लिए आपको WhtsAgent Helper को पुनः शुरू करना पड़ सकता है।</string>
 
     <!-- Application management -->
     <string name="app_management_dialog_adb_is_limited_title">adb की अनुमति सीमित है</string>
     <string name="app_management_dialog_adb_is_limited_message"><![CDATA[यह बहुत संभव है कि आपके डिवाइस का निर्माता adb की अनुमति को सीमित करता हो।<p><b><a href=\"%1$s\">इस दस्तावेज़</a></b> में आपके सिस्टम के लिए कोई समाधान हो सकता है।]]></string>
-    <string name="app_management_item_summary_requires_root">* Shizuku का रूट के साथ चलना आवश्यक है</string>
+    <string name="app_management_item_summary_requires_root">* WhtsAgent Helper का रूट के साथ चलना आवश्यक है</string>
 
     <!-- Terminal -->
-    <string name="home_terminal_title">टर्मिनल ऐप्स में Shizuku का उपयोग करें</string>
+    <string name="home_terminal_title">टर्मिनल ऐप्स में WhtsAgent Helper का उपयोग करें</string>
     <string name="terminal_tutorial_1">सबसे पहले, फ़ाइलों को अपनी पसंद की किसी भी जगह एक्सपोर्ट करें। आपको %1$s और %2$s नाम की दो फ़ाइलें मिलेंगी।</string>
-    <string name="terminal_tutorial_1_description">यदि चयनित फ़ोल्डर में उसी नाम की फ़ाइलें मौजूद हैं, तो उन्हें हटा दिया जाएगा।\n\nएक्सपोर्ट फ़ंक्शन SAF (Storage Access Framework) का उपयोग करता है। यह रिपोर्ट किया गया है कि MIUI SAF की कार्यक्षमता को बाधित करता है। यदि आप MIUI का उपयोग कर रहे हैं, तो आपको फ़ाइल को Shizuku के APK से निकालना पड़ सकता है या GitHub से डाउनलोड करना पड़ सकता है।</string>
+    <string name="terminal_tutorial_1_description">यदि चयनित फ़ोल्डर में उसी नाम की फ़ाइलें मौजूद हैं, तो उन्हें हटा दिया जाएगा।\n\nएक्सपोर्ट फ़ंक्शन SAF (Storage Access Framework) का उपयोग करता है। यह रिपोर्ट किया गया है कि MIUI SAF की कार्यक्षमता को बाधित करता है। यदि आप MIUI का उपयोग कर रहे हैं, तो आपको फ़ाइल को WhtsAgent Helper के APK से निकालना पड़ सकता है या GitHub से डाउनलोड करना पड़ सकता है।</string>
     <string name="terminal_export_files">फ़ाइलें एक्सपोर्ट करें</string>
     <string name="terminal_tutorial_2">इसके बाद, किसी भी टेक्स्ट एडिटर का उपयोग करके %1$s खोलें और संपादित करें।</string>
-    <string name="terminal_tutorial_2_description">उदाहरण के लिए, यदि आप %1$s में Shizuku का उपयोग करना चाहते हैं, तो आपको %2$s को %3$s से बदलना चाहिए (%4$s, %1$s का पैकेज नाम है)।</string>
-    <string name="terminal_tutorial_3">अंत में, फ़ाइलों को उस स्थान पर ले जाएँ जहाँ आपका टर्मिनल ऐप उन्हें एक्सेस कर सके। इसके बाद, आप Shizuku के माध्यम से कमांड चलाने के लिए %1$s का उपयोग कर पाएँगे।</string>
+    <string name="terminal_tutorial_2_description">उदाहरण के लिए, यदि आप %1$s में WhtsAgent Helper का उपयोग करना चाहते हैं, तो आपको %2$s को %3$s से बदलना चाहिए (%4$s, %1$s का पैकेज नाम है)।</string>
+    <string name="terminal_tutorial_3">अंत में, फ़ाइलों को उस स्थान पर ले जाएँ जहाँ आपका टर्मिनल ऐप उन्हें एक्सेस कर सके। इसके बाद, आप WhtsAgent Helper के माध्यम से कमांड चलाने के लिए %1$s का उपयोग कर पाएँगे।</string>
     <string name="rish_description"><![CDATA[
-%1$s के साथ, किसी भी टर्मिनल ऐप में आप Shizuku द्वारा चलाए जा रहे शेल से कनेक्ट कर सकते हैं और उसके साथ इंटरैक्ट कर सकते हैं।
+%1$s के साथ, किसी भी टर्मिनल ऐप में आप WhtsAgent Helper द्वारा चलाए जा रहे शेल से कनेक्ट कर सकते हैं और उसके साथ इंटरैक्ट कर सकते हैं।
 <p>%1$s के विस्तृत उपयोग के बारे में जानने के लिए, दस्तावेज़ देखने के लिए टैप करें।
     ]]></string>
 
@@ -102,7 +102,7 @@
     <string name="settings_translation">अनुवाद में भाग लें</string>
     <string name="settings_translation_summary">%s को आपकी भाषा में अनुवाद करने में हमारी मदद करें</string>
     <string name="settings_start_on_boot">बूट पर शुरू करें (रूट)</string>
-    <string name="settings_start_on_boot_summary">रूट किए गए डिवाइस पर, Shizuku बूट के समय अपने-आप शुरू हो सकता है</string>
+    <string name="settings_start_on_boot_summary">रूट किए गए डिवाइस पर, WhtsAgent Helper बूट के समय अपने-आप शुरू हो सकता है</string>
     <string name="settings_use_system_color">सिस्टम थीम रंग का उपयोग करें</string>
 
     <!-- About -->
@@ -110,8 +110,8 @@
     <string name="about_view_source_code"><![CDATA[%s पर स्रोत कोड देखें]]></string>
 
     <!-- Stop -->
-    <string name="action_stop">Shizuku रोकें</string>
-    <string name="dialog_stop_message">Shizuku सेवा बंद कर दी जाएगी।</string>
+    <string name="action_stop">WhtsAgent Helper रोकें</string>
+    <string name="dialog_stop_message">WhtsAgent Helper सेवा बंद कर दी जाएगी।</string>
 
     <!-- Notification -->
     <string name="notification_channel_adb_pairing">वायरलेस डिबगिंग पेयरिंग</string>
@@ -121,12 +121,12 @@
     <string name="notification_adb_pairing_stop_searching">खोज बंद करें</string>
     <string name="notification_adb_pairing_working_title">पेयरिंग जारी है</string>
     <string name="notification_adb_pairing_succeed_title">पेयरिंग सफल</string>
-    <string name="notification_adb_pairing_succeed_text">अब आप Shizuku सेवा शुरू कर सकते हैं।</string>
+    <string name="notification_adb_pairing_succeed_text">अब आप WhtsAgent Helper सेवा शुरू कर सकते हैं।</string>
     <string name="notification_adb_pairing_failed_title">पेयरिंग विफल</string>
     <string name="notification_adb_pairing_retry">पुन: प्रयास करें</string>
 
-    <string name="permission_label">Shizuku तक पहुँच</string>
-    <string name="permission_description">ऐप को Shizuku का उपयोग करने की अनुमति दें।</string>
+    <string name="permission_label">WhtsAgent Helper तक पहुँच</string>
+    <string name="permission_description">ऐप को WhtsAgent Helper का उपयोग करने की अनुमति दें।</string>
     <string name="permission_warning_template"><![CDATA[<b>%1$s</b> को %2$s की अनुमति दें?]]></string>
     <string name="grant_dialog_button_allow_always">हमेशा अनुमति दें</string>
     <string name="grant_dialog_button_deny">अस्वीकार करें</string>
@@ -140,10 +140,10 @@
     <string name="toast_copied_to_clipboard">%s\nक्लिपबोर्ड में कॉपी कर दिया गया है।</string>
 
     <!-- Messages for legacy -->
-    <string name="dialog_legacy_not_support_title">%1$s आधुनिक Shizuku का समर्थन नहीं करता</string>
-    <string name="dialog_legacy_not_support_message"><![CDATA[Legacy Shizuku को मार्च 2019 से अप्रचलित घोषित किया जा चुका है। इसके अलावा, Legacy Shizuku नए Android सिस्टम पर काम नहीं करता।<p>कृपया <b>%1$s</b> के डेवलपर से ऐप अपडेट करने के लिए कहें।]]></string>
-    <string name="dialog_requesting_legacy_title">%1$s Legacy Shizuku का अनुरोध कर रहा है</string>
-    <string name="dialog_requesting_legacy_message"><![CDATA[<b>%1$s</b> में आधुनिक Shizuku का समर्थन है, लेकिन यह Legacy Shizuku का अनुरोध कर रहा है। ऐसा इसलिए हो सकता है क्योंकि Shizuku चल नहीं रहा है, कृपया Shizuku ऐप में जाँच करें।<p>Legacy Shizuku को मार्च 2019 से अप्रचलित घोषित किया जा चुका है।]]></string>
-    <string name="dialog_requesting_legacy_button_open_shizuku">Shizuku खोलें</string>
+    <string name="dialog_legacy_not_support_title">%1$s आधुनिक WhtsAgent Helper का समर्थन नहीं करता</string>
+    <string name="dialog_legacy_not_support_message"><![CDATA[Legacy WhtsAgent Helper को मार्च 2019 से अप्रचलित घोषित किया जा चुका है। इसके अलावा, Legacy WhtsAgent Helper नए Android सिस्टम पर काम नहीं करता।<p>कृपया <b>%1$s</b> के डेवलपर से ऐप अपडेट करने के लिए कहें।]]></string>
+    <string name="dialog_requesting_legacy_title">%1$s Legacy WhtsAgent Helper का अनुरोध कर रहा है</string>
+    <string name="dialog_requesting_legacy_message"><![CDATA[<b>%1$s</b> में आधुनिक WhtsAgent Helper का समर्थन है, लेकिन यह Legacy WhtsAgent Helper का अनुरोध कर रहा है। ऐसा इसलिए हो सकता है क्योंकि WhtsAgent Helper चल नहीं रहा है, कृपया WhtsAgent Helper ऐप में जाँच करें।<p>Legacy WhtsAgent Helper को मार्च 2019 से अप्रचलित घोषित किया जा चुका है।]]></string>
+    <string name="dialog_requesting_legacy_button_open_shizuku">WhtsAgent Helper खोलें</string>
 
 </resources>

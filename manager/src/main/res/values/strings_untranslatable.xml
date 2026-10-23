@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">WhtsAgent Shizuku</string>
+    <string name="app_name" translatable="false">WhtsAgent Helper</string>
     <!-- TODO(brand): the three values below still point to NLL. Replace with your own when ready
          (see plan/01-rebranding.md). Left functional for now to avoid dead links. -->
     <string name="support_email" translatable="false">cb@nllapps.com</string>
@@ -8,6 +8,6 @@
     <string name="help_url" translatable="false">https://github.com/NLLAPPS/Shizuku/wiki</string>
 
     <!-- Permission related, appears in system permission UI -->
-    <string name="permission_group_label" translatable="false">Shizuku</string>
+    <string name="permission_group_label" translatable="false">WhtsAgent Helper</string>
     <string name="permission_group_description" translatable="false">@string/permission_label</string>
 </resources>

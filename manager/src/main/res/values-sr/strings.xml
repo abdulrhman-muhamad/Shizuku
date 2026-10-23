@@ -8,7 +8,7 @@
     <string name="home_status_service_version_update"><![CDATA[Verzija %2$s, %1$s<br>Počni ispočetka zbog ažuriranja na verziju%3$s]]></string>
     <!-- Home - Adb -->
     <string name="home_adb_title"><![CDATA[Pokreni uz pomoć konekcije preko računara]]></string>
-    <string name="home_adb_description"><![CDATA[Za uređaje koji nisu root-ovani, potrebno je izvršiti adb komandu radi pokretanja Shizuku aplikacije (zahteva konekciju sa računarom). Ovaj proces je neophodno svaki put ponoviti nakon restarta uređaja. Molim Vas <b><a href="%1$s">pročitajte pomoć </a></b>.]]></string>
+    <string name="home_adb_description"><![CDATA[Za uređaje koji nisu root-ovani, potrebno je izvršiti adb komandu radi pokretanja WhtsAgent Helper aplikacije (zahteva konekciju sa računarom). Ovaj proces je neophodno svaki put ponoviti nakon restarta uređaja. Molim Vas <b><a href="%1$s">pročitajte pomoć </a></b>.]]></string>
     <string name="home_adb_button_view_help">Pročitajte pomoć</string>
     <string name="home_adb_button_view_command">Pregled komande</string>
     <string name="home_adb_dialog_view_command_message"><![CDATA[<font face="monospace">%1$s</font><br><br>* Постоје још нека разматрања, молимо вас да прво потврдите да сте прочитали помоћ.]]></string>
@@ -16,7 +16,7 @@
     <string name="home_adb_dialog_view_command_button_send">Pošalji</string>
     <!-- Home - Wireless Adb -->
     <string name="home_wireless_adb_title"><![CDATA[Pokreni preko Bežičnog otklanjanja grešaka]]></string>
-    <string name="home_wireless_adb_description"><![CDATA[Za Android verziju softvera 11 i više, možete omogućavanjem rada režima Bežičnog otklanjanja grešaka pokrenuti Shizuku aplikaciju direktno sa Vašeg  telefona, zaobilazeći konekciju sa računarom.<p> Molimo Vas, najpre pogledajte vodič Korak-po-korak.]]></string>
+    <string name="home_wireless_adb_description"><![CDATA[Za Android verziju softvera 11 i više, možete omogućavanjem rada režima Bežičnog otklanjanja grešaka pokrenuti WhtsAgent Helper aplikaciju direktno sa Vašeg  telefona, zaobilazeći konekciju sa računarom.<p> Molimo Vas, najpre pogledajte vodič Korak-po-korak.]]></string>
     <string name="home_wireless_adb_description_pre_11"><![CDATA[Pre Android verzije softvera 11, konekcija sa računarom bila je neophodna  u cilju omogućavanja rada režima Bežično otklanjanja grešaka.]]></string>
     <string name="home_wireless_adb_view_guide_button">Vodič Korak-po-korak</string>
     <!-- Adb -->
@@ -26,7 +26,7 @@
         se automatski onemogućava pri svakoj promeni mrežne konekcije..
         \n
         \nPrimetićete, onemogućavanjem sekcije \"Opcije programera\" ili režima \"USB otklanjanje
-        grešaka\", proces rada aplikacije Shizuku se prekida.</string>
+        grešaka\", proces rada aplikacije WhtsAgent Helper se prekida.</string>
     <string name="dialog_adb_discovery_message_toggle_wireless_debugging">Молимо вас да покушате да
         онемогућите и омогућите „Бежично отклањање грешака“ ако се претрага настави.</string>
     <string name="dialog_adb_port">Лука</string>
@@ -37,7 +37,7 @@
     <string name="dialog_adb_pairing_paring_code">Kód za uparivanje</string>
     <string name="paring_code_is_wrong">Kód za uparivanje je pogrešan.</string>
     <string name="cannot_connect_port">Ne mogu da se povežem sa bežičnom uslugom otklanjanje
-        grešaka.\n\nUverite se da je Shizuku na beloj listi u svim zaštitnim zidovima, ad-block, VPN
+        grešaka.\n\nUverite se da je WhtsAgent Helper na beloj listi u svim zaštitnim zidovima, ad-block, VPN
         ili sličnim aplikacijama koje mogu ograničiti pristup mreži.</string>
     <string name="dialog_wireless_adb_not_enabled">Bežično otklanjanje grešaka nije omogućeno.
         \nPrimedba: Pre Android-a 11, omogućavanje bežičnog otklanjanja grešaka bilo je uslovljeno
@@ -49,18 +49,18 @@
         Додирните леву страну „Бежично отклањање грешака“\n- Додирните „Упари уређај са кодом за
         упаривање“\n- Унесите код за упаривање у обавештење</string>
     <string name="dialog_adb_pairing_accessibility_permission">На Андроиду 14, инсталирање/ажурирање
-        Шизукуа помоћу инсталера пакета опозива дозволу ^1, која је потребна за омогућавање услуге
+        WhtsAgent Helper-а помоћу инсталера пакета опозива дозволу ^1, која је потребна за омогућавање услуге
         приступачности за упаривање.\n\nДа бисте је доделили, покрените следећу ADB
         команду:\n\n^2\n\nНакон покретања команде, можете наставити са процесом
-        упаривања.\n\nНапомена: ово можете заобићи инсталирањем/ажурирањем Шизукуа помоћу ADB-а.</string>
+        упаривања.\n\nНапомена: ово можете заобићи инсталирањем/ажурирањем WhtsAgent Helper-а помоћу ADB-а.</string>
     <string name="dialog_adb_pairing_accessibility_enable">Омогућите услугу приступачности да бисте
-        започели процес упаривања. Ово омогућава Шизукуу да детектује код за упаривање.\n\nУслуга
+        започели процес упаривања. Ово омогућава WhtsAgent Helper-у да детектује код за упаривање.\n\nУслуга
         приступачности ће бити искључена када се пронађе код или након 1 минута ради уштеде
         енергије.</string>
     <string name="dialog_adb_pairing_accessibility_navigate">Почните упаривање пратећи следеће
         кораке:\n- Идите на „Опције за програмере“\n- Омогућите „USB отклањање грешака“ и „Бежично
         отклањање грешака“\n- Додирните леву страну „Бежично отклањање грешака“\n- Додирните „Упари
-        уређај са кодом за упаривање“. Шизуку ће аутоматски детектовати код за упаривање.</string>
+        уређај са кодом за упаривање“. WhtsAgent Helper ће аутоматски детектовати код за упаривање.</string>
     <string name="adb_pairing_requires_multi_window">Molim Vas, najpre izaberite režim podeljenog
         ekrana, odnosno režim više prozora.</string>
     <string name="adb_pairing_requires_multi_window_reason">Sistem zahteva dijalog uparivanja da
@@ -73,7 +73,7 @@
     <string name="enable">Омогући</string>
     <string name="development_settings">Razvojne opcije programera</string>
     <string name="notification_settings">Opcije obaveštenja</string>
-    <string name="adb_pairing_tutorial_content_notification">Notifikacija iz Shizuku aplikacije će
+    <string name="adb_pairing_tutorial_content_notification">Notifikacija iz WhtsAgent Helper aplikacije će
         Vam pomoći da dovršite uparivanje.</string>
     <string name="adb_pairing_tutorial_content_steps">Идите на „Опције за програмере“, затим
         омогућите „USB дебаговање“ и „Бежично дебаговање“.</string>
@@ -81,21 +81,21 @@
         отклањање грешака“, а затим додирните „Упари уређај са кодом за упаривање“. Унесите код из
         обавештења да бисте завршили упаривање.</string>
     <string name="adb_pairing_tutorial_content_notification_blocked">Процес упаривања захтева вашу
-        интеракцију са обавештењем од Шизукуа. Дозволите Шизукуу да објављује обавештења.</string>
+        интеракцију са обавештењем од WhtsAgent Helper-а. Дозволите WhtsAgent Helper-у да објављује обавештења.</string>
     <string name="adb_pairing_tutorial_content_miui">Корисници MIUI-ја ће можда морати да промене
         стил обавештења на „Android“ из „Обавештења“ - „Тањир обавештења“ у системским подешавањима.</string>
     <string name="adb_pairing_tutorial_content_miui_2">U suprotnom, možda nećete moći da unesete kod
         za uparivanje iz obaveštenja.</string>
-    <string name="adb_pairing_tutorial_content_finish">Vratite se u Shizuku i počnite Shizuku.</string>
-    <string name="adb_pairing_tutorial_content_network">Shizuku treba da pristupi lokalnoj mreži.
+    <string name="adb_pairing_tutorial_content_finish">Vratite se u WhtsAgent Helper i počnite WhtsAgent Helper.</string>
+    <string name="adb_pairing_tutorial_content_network">WhtsAgent Helper treba da pristupi lokalnoj mreži.
         Kontroliše se mrežnom dozvolom.</string>
     <string name="adb_pairing_tutorial_content_network_limation_not_foreground">Neki sistemi (kao
         što je MIUI) ne dozvoljavaju aplikacijama pristup mreži kada nisu vidljive, čak i ako
         aplikacija koristi uslugu u prvom planu. Molimo Vas da onemogućite funkcije optimizacije
-        baterije za Shizuku na takvim sistemima.</string>
+        baterije za WhtsAgent Helper na takvim sistemima.</string>
     <!-- Home - Root -->
     <string name="home_root_title"><![CDATA[Покрени (за рутоване уређаје)]]></string>
-    <string name="home_root_description"><![CDATA[Ако користите Magisk, можете испробати %1$s. За root кориснике, на крају ће заменити Shizuku. Имајте на уму да постојеће апликације треба мало да се промене да би користиле %2$s.]]></string>
+    <string name="home_root_description"><![CDATA[Ако користите Magisk, можете испробати %1$s. За root кориснике, на крају ће заменити WhtsAgent Helper. Имајте на уму да постојеће апликације треба мало да се промене да би користиле %2$s.]]></string>
     <string name="home_root_button_start">Почетак</string>
     <string name="home_root_button_restart">Поново покрени</string>
     <!-- Home - Application management -->
@@ -106,32 +106,32 @@
         <item quantity="other"><![CDATA[Овлашћене %d апликације]]></item>
     </plurals>
     <string name="home_app_management_view_authorized_apps"><![CDATA[Додирните да бисте управљали овлашћеним апликацијама]]></string>
-    <string name="home_app_management_empty">Апликације које су затражиле или пријавиле Шизуку
+    <string name="home_app_management_empty">Апликације које су затражиле или пријавиле WhtsAgent Helper
         дозволу биће приказане овде.</string>
     <!-- Home - Automation -->
-    <string name="home_automation_title">Контролишите Шизуку помоћу апликација за аутоматизацију</string>
+    <string name="home_automation_title">Контролишите WhtsAgent Helper помоћу апликација за аутоматизацију</string>
     <string name="home_automation_description">Апликације попут Таскера и МакроДроида могу слати
-        намере за аутоматско покретање/заустављање Шизукуа.</string>
+        намере за аутоматско покретање/заустављање WhtsAgent Helper-а.</string>
     <string name="home_automation_button_view_intents">Прикажи намере</string>
     <!-- Home - Learn more -->
     <!-- Home - Adb permissions limited -->
     <string name="home_adb_is_limited_title">Морате направити додатни корак</string>
     <string name="home_adb_is_limited_description">Произвођач вашег уређаја је ограничио adb дозволе
-        и апликације које користе Shizuku неће исправно радити.\n\nОбично се ово ограничење може
+        и апликације које користе WhtsAgent Helper неће исправно радити.\n\nОбично се ово ограничење може
         уклонити подешавањем неких опција у „Опцијама за програмере“. Молимо вас да прочитате помоћ
-        за детаље о томе како да то урадите.\n\nМожда ћете морати поново да покренете Shizuku да би
+        за детаље о томе како да то урадите.\n\nМожда ћете морати поново да покренете WhtsAgent Helper да би
         операција ступила на снагу.</string>
     <!-- Application management -->
     <string name="app_management_dialog_adb_is_limited_title">Дозвола adb-а је ограничена</string>
     <string name="app_management_dialog_adb_is_limited_message"><![CDATA[Врло је могуће да произвођач вашег уређаја ограничава дозволе adb-а.<p>Можда постоји решење за ваш систем у <b><a href=\"%1$s\">овом документу</a></b>.]]></string>
-    <string name="app_management_item_summary_requires_root">* захтева да Шизуку ради са root-ом</string>
+    <string name="app_management_item_summary_requires_root">* захтева да WhtsAgent Helper ради са root-ом</string>
     <string name="app_management_toggle_all">Укључи/искључи све</string>
     <!-- Terminal -->
-    <string name="home_terminal_title">Користите Шизуку у терминалним апликацијама</string>
+    <string name="home_terminal_title">Користите WhtsAgent Helper у терминалним апликацијама</string>
     <string name="terminal_tutorial_miui">Корисници су пријавили да MIUI крши Storage Access
         Framework, који користи функција извоза.</string>
     <string name="terminal_tutorial_miui_2">Ако користите MIUI, можда ћете морати да извучете
-        датотеку из фасцикле assets у Shizuku-овом APK-у.</string>
+        датотеку из фасцикле assets у WhtsAgent Helper-овом APK-у.</string>
     <string name="terminal_tutorial_1">Извезите датотеке у нову фасциклу.</string>
     <string name="terminal_tutorial_1_description">Биће извезене две датотеке: %1$s и %2$s. Ако
         датотеке већ постоје у изабраној фасцикли, биће обрисане.</string>
@@ -155,17 +155,17 @@
         autorizaciju.</string>
     <string name="settings_use_system_color">Користи боју системске теме</string>
     <string name="settings_watchdog">Чувар</string>
-    <string name="settings_watchdog_summary">Аутоматски поново покрените Шизуку ако се сруши</string>
+    <string name="settings_watchdog_summary">Аутоматски поново покрените WhtsAgent Helper ако се сруши</string>
     <string name="settings_tcp_mode">TCP режим</string>
-    <string name="settings_tcp_mode_summary">"Омогућава Шизукуу да се поново покрене без Wi-Fi-ја.
-        (Шизуку се морао једном покренути од поновног покретања)"</string>
+    <string name="settings_tcp_mode_summary">"Омогућава WhtsAgent Helper-у да се поново покрене без Wi-Fi-ја.
+        (WhtsAgent Helper се морао једном покренути од поновног покретања)"</string>
     <string name="settings_tcp_mode_dialog_close_port">"TCP порт ће бити одмах затворен. Биће вам
         потребан Wi-Fi да бисте поново укључили TCP режим. Желите ли да наставите?"</string>
     <string name="settings_tcp_mode_closing_port">Затварање TCP порта...</string>
     <string name="settings_restart_dialog_title">Потребно је поновно покретање</string>
-    <string name="settings_restart_dialog_message">Shizuku treba da se ponovo pokrene da bi se
+    <string name="settings_restart_dialog_message">WhtsAgent Helper treba da se ponovo pokrene da bi se
         primenila ova postavka.</string>
-    <string name="settings_restart_dialog_message_wifi_required"><![CDATA[<br><br><b>Vi-Fi je potreban. Shizuku će nastaviti da radi i čekati Vi-Fi vezu pre ponovnog pokretanja u pozadini.</b>]]></string>
+    <string name="settings_restart_dialog_message_wifi_required"><![CDATA[<br><br><b>Vi-Fi je potreban. WhtsAgent Helper će nastaviti da radi i čekati Vi-Fi vezu pre ponovnog pokretanja u pozadini.</b>]]></string>
     <string name="settings_tcp_port">ТЦП порт</string>
     <string name="settings_tcp_port_default">Подразумевано (5555)</string>
     <string name="settings_tcp_port_hint">Оставите празно да бисте користили подразумевано (5555)</string>
@@ -206,9 +206,9 @@
     <string name="snackbar_action_fix">Поправи</string>
     <!-- Toast -->
     <string name="toast_no_email_app">Није пронађена апликација за е-пошту</string>
-    <string name="toast_shizuku_already_starting">Шизуку већ почиње у позадини</string>
+    <string name="toast_shizuku_already_starting">WhtsAgent Helper већ почиње у позадини</string>
     <string name="toast_accessibility_tv_only">Ova usluga je podržana samo na TV uređajima.</string>
-    <string name="toast_pairing_timeout">Shizuku uparivanje servis je isteklo.</string>
+    <string name="toast_pairing_timeout">WhtsAgent Helper uparivanje servis je isteklo.</string>
     <!-- Dark Mode Setting Override -->
     <string name="dark_theme">Тема</string>
     <string name="dark_theme_off">Увек светло</string>
@@ -219,8 +219,8 @@
     <string name="about_view_source_code"><![CDATA[Погледајте изворни код на %s]]></string>
     <!-- Start -->
     <!-- Stop -->
-    <string name="action_stop">Заустави Шизуку</string>
-    <string name="dialog_stop_message">Шизуку линија ће бити обустављена.</string>
+    <string name="action_stop">Заустави WhtsAgent Helper</string>
+    <string name="dialog_stop_message">WhtsAgent Helper линија ће бити обустављена.</string>
     <!-- Notification -->
     <string name="notification_channel_adb_pairing">Бежично упаривање за отклањање грешака</string>
     <string name="notification_adb_pairing_input_paring_code">Унесите код за упаривање</string>
@@ -229,12 +229,12 @@
     <string name="notification_adb_pairing_stop_searching">Престани претрагу</string>
     <string name="notification_adb_pairing_working_title">Упаривање у току</string>
     <string name="notification_adb_pairing_succeed_title">Упаривање је успешно</string>
-    <string name="notification_adb_pairing_succeed_text">Сада можете покренути Шизуку услугу.</string>
+    <string name="notification_adb_pairing_succeed_text">Сада можете покренути WhtsAgent Helper услугу.</string>
     <string name="notification_adb_pairing_failed_title">Упаривање није успело</string>
     <string name="notification_adb_pairing_retry">Покушај поново</string>
     <!-- Permission related, appears in system permission UI -->
-    <string name="permission_label">приступ Шизуку</string>
-    <string name="permission_description">Дозволите апликацији да користи Шизуку.</string>
+    <string name="permission_label">приступ WhtsAgent Helper</string>
+    <string name="permission_description">Дозволите апликацији да користи WhtsAgent Helper.</string>
     <string name="permission_warning_template"><![CDATA[Дозволити <b>%1$s</b> до %2$s?]]></string>
     <string name="grant_dialog_button_allow_always">Дозволи све време</string>
     <string name="grant_dialog_button_deny">"Одбиј"</string>
@@ -243,18 +243,18 @@
     <string name="start_with_root_failed">Не могу да покренем услугу јер није одобрена root дозвола
         или овај уређај није рутован.</string>
     <!-- WADB Starter -->
-    <string name="wadb_notification_title">Почетак игре Шизуку…</string>
+    <string name="wadb_notification_title">Почетак игре WhtsAgent Helper…</string>
     <string name="wadb_notification_wifi_required">Чека се Wi-Fi веза пре него што се настави</string>
     <string name="wadb_notification_retry">Чекање на поновни покушај</string>
     <string name="wadb_error_title">Грешка при покретању система</string>
     <string name="wadb_error_notify_dev">Додирните да бисте обавестили програмера.</string>
     <string name="wadb_permission_error_notification_title">Грешка дозволе</string>
-    <string name="wadb_permission_error_notification_content">Шизуку захтева WRITE_SECURE_SETTINGS
+    <string name="wadb_permission_error_notification_content">WhtsAgent Helper захтева WRITE_SECURE_SETTINGS
         да би се покренуо при покретању система. Додирните да бисте сазнали како да га одобрите.</string>
     <!-- Watchdog -->
     <string name="watchdog_running">Чуварски орган ради</string>
     <string name="watchdog_turn_off">Ugasi</string>
-    <string name="watchdog_shizuku_crashed_title">Шизуку се недавно срушио</string>
+    <string name="watchdog_shizuku_crashed_title">WhtsAgent Helper се недавно срушио</string>
     <string name="watchdog_shizuku_crashed_text">Watchdog је поново покренуо услугу. Додирните да
         бисте сазнали више о потенцијалним решењима за спречавање будућих падова.</string>
     <string name="watchdog_shizuku_crashed_action_turn_off_alerts">Искључи упозорења</string>
@@ -263,13 +263,13 @@
     <string name="toast_copied_to_clipboard">Копирано у међуспремник</string>
     <string name="accessibility_service_description">Пружа подршку за упаривање уређаја (нпр.
         телевизора са Андроидом 14+) где обавештења или подељени екран не могу да се
-        користе.\n\nОмогућава Шизуку-у да издвоји код за упаривање са екрана за упаривање за бежично
+        користе.\n\nОмогућава WhtsAgent Helper-у да издвоји код за упаривање са екрана за упаривање за бежично
         отклањање грешака. Сам ће се деактивирати када се пронађе код за упаривање.</string>
     <!-- Messages for legacy -->
-    <string name="dialog_legacy_not_support_title">%1$s не подржава модерни Шизуку</string>
-    <string name="dialog_legacy_not_support_message"><![CDATA[Застарели Шизуку је застарео од марта 2019. Такође, застарели Шизуку не ради на новијим Андроид системима.<p>Замолите програмера <b>%1$s</b> да ажурира.]]></string>
-    <string name="dialog_requesting_legacy_title">%1$s захтева старију верзију Шизукуа</string>
-    <string name="dialog_requesting_legacy_message"><![CDATA[<b>%1$s</b> има подршку за модерни Шизуку, али захтева старији Шизуку. То би могло бити зато што Шизуку не ради, проверите у апликацији Шизуку.<p>Старији Шизуку је застарео од марта 2019.]]></string>
-    <string name="dialog_requesting_legacy_button_open_shizuku">Отвори Шизуку</string>
+    <string name="dialog_legacy_not_support_title">%1$s не подржава модерни WhtsAgent Helper</string>
+    <string name="dialog_legacy_not_support_message"><![CDATA[Застарели WhtsAgent Helper је застарео од марта 2019. Такође, застарели WhtsAgent Helper не ради на новијим Андроид системима.<p>Замолите програмера <b>%1$s</b> да ажурира.]]></string>
+    <string name="dialog_requesting_legacy_title">%1$s захтева старију верзију WhtsAgent Helper-а</string>
+    <string name="dialog_requesting_legacy_message"><![CDATA[<b>%1$s</b> има подршку за модерни WhtsAgent Helper, али захтева старији WhtsAgent Helper. То би могло бити зато што WhtsAgent Helper не ради, проверите у апликацији WhtsAgent Helper.<p>Старији WhtsAgent Helper је застарео од марта 2019.]]></string>
+    <string name="dialog_requesting_legacy_button_open_shizuku">Отвори WhtsAgent Helper</string>
     <string name="wadb_notification_attempt_now">Покушај сада</string>
 </resources>
