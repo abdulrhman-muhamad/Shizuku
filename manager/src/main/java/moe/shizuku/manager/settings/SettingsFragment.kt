@@ -31,6 +31,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
+import moe.shizuku.manager.HelpURLs
 import moe.shizuku.manager.R
 import moe.shizuku.manager.ShizukuSettings
 import moe.shizuku.manager.ShizukuSettings.Keys.KEY_BLACK_NIGHT_THEME
@@ -308,6 +309,8 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         }
 
         translationPreference.apply {
+            // Opens NLL's Shizuku translation project, which is not ours.
+            isVisible = false
             summary = context.getString(R.string.settings_translation_summary, context.getString(R.string.app_name))
             setOnPreferenceClickListener {
                 CustomTabsHelper.launchUrlOrCopy(context, context.getString(R.string.translation_url))
@@ -323,7 +326,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         }
 
         helpPreference.setOnPreferenceClickListener {
-            CustomTabsHelper.launchUrlOrCopy(context, context.getString(R.string.help_url))
+            CustomTabsHelper.launchUrlOrCopy(context, HelpURLs.HELP)
             true
         }
 

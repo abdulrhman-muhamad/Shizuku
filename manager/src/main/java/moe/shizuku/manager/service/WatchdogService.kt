@@ -14,6 +14,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.net.toUri
 import moe.shizuku.manager.MainActivity
+import moe.shizuku.manager.HelpURLs
 import moe.shizuku.manager.R
 import moe.shizuku.manager.ShizukuSettings
 import moe.shizuku.manager.receiver.ShizukuReceiverStarter
@@ -124,7 +125,7 @@ class WatchdogService : Service() {
         nm.createNotificationChannel(channel)
 
         val learnMoreIntent = Intent(Intent.ACTION_VIEW).apply {
-            data = "https://github.com/NLLAPPS/Shizuku/wiki/troubleshooting#shizuku-keeps-stopping-randomly".toUri()
+            data = HelpURLs.TROUBLESHOOTING_STOPPING.toUri()
         }
         val learnMorePendingIntent = PendingIntent.getActivity(this, 0, learnMoreIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
 

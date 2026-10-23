@@ -14,6 +14,7 @@ import android.provider.Settings
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.topjohnwu.superuser.Shell
+import moe.shizuku.manager.HelpURLs
 import moe.shizuku.manager.R
 import moe.shizuku.manager.AppConstants
 import moe.shizuku.manager.ShizukuSettings
@@ -139,7 +140,7 @@ object ShizukuReceiverStarter {
         val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         nm.createNotificationChannel(channel)
 
-        val webpageIntent = Intent(Intent.ACTION_VIEW, "https://github.com/NLLAPPS/Shizuku/wiki/Troubleshooting#shizuku-isnt-starting-on-boot".toUri())
+        val webpageIntent = Intent(Intent.ACTION_VIEW, HelpURLs.TROUBLESHOOTING_BOOT.toUri())
         val pendingWebpageIntent = PendingIntent.getActivity(
             context, 0, webpageIntent, PendingIntent.FLAG_IMMUTABLE
         )
