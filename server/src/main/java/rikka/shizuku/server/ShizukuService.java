@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Stream;
 
 import kotlin.collections.ArraysKt;
@@ -617,9 +618,19 @@ public class ShizukuService extends Service<ShizukuUserServiceManager, ShizukuCl
         }
     }
 
+    /**
+     * Upstream force-stops the manager and retries when its provider can't be reached. On MIUI that
+     * backfires: each kill counts as a crash ("proc frequent died"), MIUI then refuses to launch the
+     * app for its provider ("process is bad"), every later send fails, and the server kills the
+     * manager again — even while the user has it open. Allow that kill once per server run.
+     */
+    private static final AtomicBoolean sManagerKillRetried = new AtomicBoolean(false);
+
     static void sendBinderToManager(Binder binder, int userId) {
         boolean success = sendBinderToUserApp(binder, MANAGER_APPLICATION_ID, userId);
-        if (!success) {
+        if (!success && sManagerKillRetried.getAndSet(true)) {
+            LOGGER.w("binder not delivered to %s in user %d; not killing it again", MANAGER_APPLICATION_ID, userId);
+        } else if (!success) {
             // For unknown reason, sometimes this could happens
             // Kill Shizuku app and try again could work
             try {
