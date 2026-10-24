@@ -49,6 +49,9 @@
     <string name="home_advanced_title">خيارات متقدمة</string>
     <string name="home_advanced_summary">طرق أخرى لتشغيل المساعد</string>
 
+    <!-- Language dropdown (missing from upstream's Arabic strings.xml) -->
+    <string name="follow_system">حسب لغة النظام</string>
+
     <!-- Application management -->
     <string name="app_management_allowed_automatically">تطبيقات WhtsAgent مسموح لها تلقائياً.</string>
 </resources>

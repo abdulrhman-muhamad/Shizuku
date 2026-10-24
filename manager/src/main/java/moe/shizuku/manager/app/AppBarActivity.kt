@@ -1,12 +1,15 @@
 package moe.shizuku.manager.app
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.MenuProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -38,6 +41,22 @@ abstract class AppBarActivity : AppActivity() {
             insets
         }
         setSupportActionBar(toolbar)
+        addMenuProvider(languageMenu)
+    }
+
+    // WhtsAgent: language dropdown on every screen, not only in Settings.
+    private val languageMenu = object : MenuProvider {
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            menu.add(Menu.NONE, R.id.action_language, Menu.NONE, R.string.settings_language)
+                .setIcon(R.drawable.ic_language_24)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+        }
+
+        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            if (menuItem.itemId != R.id.action_language) return false
+            LanguagePicker.show(this@AppBarActivity, findViewById(R.id.action_language) ?: toolbar)
+            return true
+        }
     }
 
     @LayoutRes

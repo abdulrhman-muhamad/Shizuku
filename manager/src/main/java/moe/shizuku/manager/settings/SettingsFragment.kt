@@ -1,5 +1,7 @@
 package moe.shizuku.manager.settings
 
+import moe.shizuku.manager.app.LanguagePicker
+import androidx.preference.PreferenceGroup
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -164,32 +166,16 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
 
         languagePreference.apply {
 
-            val currentLocales = AppCompatDelegate.getApplicationLocales()
-            title = if (!currentLocales.isEmpty) {
-                currentLocales[0]?.let {
-                    if (it.language.isNotEmpty()) {
-                        it.getDisplayName(it)
-                    }else{
-                        context.getString(R.string.follow_system)
-                    }
-                }
-            } else {
-                // Fallback to "System default" or the actual system locale name
-                context.getString(R.string.follow_system)
-            }
+            // Same names as the dropdown ("English", not "English (United States)").
+            title = LanguagePicker.currentLabel() ?: context.getString(R.string.follow_system)
 
-            setOnPreferenceClickListener {
-                val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    Intent(Settings.ACTION_APP_LOCALE_SETTINGS).apply {
-                        data = Uri.fromParts("package", requireContext().packageName, null)
-                    }
-                } else {
-                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                        data = Uri.fromParts("package", requireContext().packageName, null)
-                    }
-                }
-
-                requireContext().startActivity(intent)
+            // WhtsAgent: the same in-app dropdown as the toolbar, anchored to this row. The system's
+            // per-app language screen only exists on Android 13+.
+            setOnPreferenceClickListener { preference ->
+                val position = (listView.adapter as? PreferenceGroup.PreferencePositionCallback)
+                    ?.getPreferenceAdapterPosition(preference) ?: RecyclerView.NO_POSITION
+                val anchor = listView.findViewHolderForAdapterPosition(position)?.itemView ?: listView
+                LanguagePicker.show(requireContext(), anchor)
                 true
             }
 
