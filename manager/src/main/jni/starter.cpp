@@ -155,8 +155,8 @@ static void start_server(const char *path, const char *main_class, const char *p
             read(fds[0], &ready, 1);
             close(fds[0]);
 
-            printf("info: shizuku_server pid is %d\n", pid);
-            printf("info: shizuku_starter exit with 0\n");
+            printf("info: server pid is %d\n", pid);
+            printf("info: starter exit with 0\n");
             exit(EXIT_SUCCESS);
         }
     }
@@ -261,12 +261,12 @@ int main(int argc, char *argv[]) {
             return;
 
         if (kill(pid, SIGKILL) == 0)
-            printf("info: killed %d (%s)\n", pid, name);
+            printf("info: stopped the previous server (pid %d)\n", pid);
         else if (errno == EPERM) {
             perrorf("fatal: can't kill %d, please try to stop existing WhtsAgent Helper from app first.\n", pid);
             exit(EXIT_FATAL_KILL);
         } else {
-            printf("warn: failed to kill %d (%s)\n", pid, name);
+            printf("warn: failed to stop the previous server (pid %d)\n", pid);
         }
     });
 

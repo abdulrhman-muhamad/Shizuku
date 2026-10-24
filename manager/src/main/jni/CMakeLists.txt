@@ -22,14 +22,16 @@ endif ()
 find_package(boringssl REQUIRED CONFIG)
 find_package(cxx REQUIRED CONFIG)
 
-add_executable(libshizuku.so
+# The starter is an executable named like a library so the installer extracts it into
+# nativeLibraryDir; users run it (Starter.adbCommand). Named for the brand, not upstream.
+add_executable(libwhtsagent.so
         starter.cpp misc.cpp selinux.cpp cgroup.cpp)
 
-target_link_libraries(libshizuku.so log cxx::cxx)
+target_link_libraries(libwhtsagent.so log cxx::cxx)
 
 if (NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_custom_command(TARGET libshizuku.so POST_BUILD
-            COMMAND ${CMAKE_STRIP} --remove-section=.comment "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libshizuku.so")
+    add_custom_command(TARGET libwhtsagent.so POST_BUILD
+            COMMAND ${CMAKE_STRIP} --remove-section=.comment "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libwhtsagent.so")
 endif ()
 
 add_library(adb SHARED
