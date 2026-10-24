@@ -92,7 +92,11 @@ class SetupActivity : AppBarActivity() {
             body = getString(R.string.setup_step_wadb_body),
             done = running || (SetupState.usbDebuggingOn() && SetupState.wirelessDebuggingOn(this)),
             button = R.string.setup_open_developer_options,
-            action = { SettingsPage.Developer.HighlightWirelessDebugging.launch(this) },
+            action = {
+                val hint = SetupState.developerOptionsOn(this) // otherwise the page explains itself
+                SettingsPage.Developer.HighlightWirelessDebugging.launch(this)
+                if (hint) showHint(R.string.setup_hint_wireless_debugging)
+            },
         ),
         Step(
             title = R.string.setup_step_pair_title,
@@ -149,7 +153,11 @@ class SetupActivity : AppBarActivity() {
         body = getString(R.string.setup_step_dev_body),
         done = running || SetupState.developerOptionsOn(this),
         button = R.string.setup_step_dev_button,
-        action = { launchSettings(Settings.ACTION_DEVICE_INFO_SETTINGS) },
+        action = {
+            // Settings highlights the row on stock Android; OEM "About phone" pages ignore the key.
+            launchSettings(Settings.ACTION_DEVICE_INFO_SETTINGS, highlight = "build_number")
+            showHint(R.string.setup_hint_build_number)
+        },
     )
 
     private fun doneStep(): Step {
@@ -195,7 +203,12 @@ class SetupActivity : AppBarActivity() {
             EnvironmentUtils.isTelevision() -> showAccessibilityDialog()
             // Same rule as the home screen's Pairing button: a dialog where a notification is awkward.
             displayId > 0 || ShizukuSettings.getLegacyPairing() -> AdbPairDialogFragment().show(supportFragmentManager)
-            else -> startActivity(Intent(this, AdbPairingTutorialActivity::class.java))
+            // The tutorial starts pairing (asking for notifications/permissions first if needed),
+            // then goes straight on to Wireless debugging with a hint.
+            else -> startActivity(
+                Intent(this, AdbPairingTutorialActivity::class.java)
+                    .putExtra(AdbPairingTutorialActivity.EXTRA_OPEN_SETTINGS, true)
+            )
         }
     }
 
@@ -205,9 +218,16 @@ class SetupActivity : AppBarActivity() {
         Toast.makeText(this, R.string.setup_toast_copied, Toast.LENGTH_SHORT).show()
     }
 
-    private fun launchSettings(action: String) {
+    /** Tells the user what to tap on the Settings page that is opening. */
+    private fun showHint(text: Int) {
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+    }
+
+    private fun launchSettings(action: String, highlight: String? = null) {
         try {
-            startActivity(Intent(action).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            val intent = Intent(action).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            if (highlight != null) intent.putExtra(":settings:fragment_args_key", highlight)
+            startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             startActivity(Intent(Settings.ACTION_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         }

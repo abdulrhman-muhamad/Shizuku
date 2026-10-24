@@ -32,6 +32,9 @@
     <string name="setup_step_computer_button">نسخ الأمر</string>
     <string name="setup_toast_turn_on_developer_options">فعّل «خيارات المطور» أولاً: اضغط على «رقم الإصدار» 7 مرات (في Xiaomi وRedmi وPOCO: «إصدار النظام» أو «إصدار MIUI»).</string>
     <string name="setup_toast_connect_wifi">تصحيح الأخطاء اللاسلكي يحتاج إلى Wi-Fi. شغّل Wi-Fi واتصل بشبكة، ثم اضغط «تشغيل» مرة أخرى.</string>
+    <string name="setup_hint_build_number">اضغط على «رقم الإصدار» 7 مرات (في Xiaomi وRedmi وPOCO: «إصدار النظام»)، ثم ارجع.</string>
+    <string name="setup_hint_wireless_debugging">فعّل «تصحيح أخطاء USB» ثم «تصحيح الأخطاء اللاسلكي» (المميَّز)، ثم ارجع.</string>
+    <string name="setup_hint_pair">افتح «تصحيح الأخطاء اللاسلكي»، ثم اضغط «إقران الجهاز باستخدام رمز الإقران». اكتب الرمز في إشعار WhtsAgent Helper.</string>
     <string name="setup_toast_copied">تم نسخ الأمر</string>
 
     <string name="setup_step_root_title">التشغيل بصلاحيات الروت</string>

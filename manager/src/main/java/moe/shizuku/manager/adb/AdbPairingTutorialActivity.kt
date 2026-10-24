@@ -1,5 +1,6 @@
 package moe.shizuku.manager.adb
 
+import moe.shizuku.manager.setup.SetupState
 import android.Manifest
 import android.app.AppOpsManager
 import android.app.ForegroundServiceStartNotAllowedException
@@ -17,6 +18,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import moe.shizuku.manager.AppConstants
+import moe.shizuku.manager.R
 import moe.shizuku.manager.app.AppBarActivity
 import moe.shizuku.manager.databinding.AdbPairingTutorialActivityBinding
 import moe.shizuku.manager.utils.SettingsHelper
@@ -25,6 +27,13 @@ import rikka.compatibility.DeviceCompatibility
 
 @RequiresApi(Build.VERSION_CODES.R)
 class AdbPairingTutorialActivity : AppBarActivity() {
+
+    companion object {
+        /** Set by the guided setup: once pairing has started, open Wireless debugging with a hint. */
+        const val EXTRA_OPEN_SETTINGS = "whtsagent.open_settings"
+    }
+
+    private var openSettingsAfterStart = false
 
     private lateinit var binding: AdbPairingTutorialActivityBinding
 
@@ -35,6 +44,7 @@ class AdbPairingTutorialActivity : AppBarActivity() {
         val context = this
 
         binding = AdbPairingTutorialActivityBinding.inflate(layoutInflater, rootView, true)
+        openSettingsAfterStart = savedInstanceState == null && intent.getBooleanExtra(EXTRA_OPEN_SETTINGS, false)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -124,6 +134,14 @@ class AdbPairingTutorialActivity : AppBarActivity() {
         val intent = AdbPairingService.startIntent(this)
         try {
             startForegroundService(intent)
+            if (openSettingsAfterStart) {
+                // Only once the service (and its notification) is up, so the code has somewhere to go.
+                openSettingsAfterStart = false
+                SettingsHelper.launchOrHighlightWirelessDebugging(this)
+                if (SetupState.developerOptionsOn(this)) {
+                    Toast.makeText(this, R.string.setup_hint_pair, Toast.LENGTH_LONG).show()
+                }
+            }
         } catch (e: Throwable) {
             Log.e(AppConstants.TAG, "startForegroundService", e)
 
