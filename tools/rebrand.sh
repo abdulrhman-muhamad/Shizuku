@@ -35,6 +35,8 @@ rep "$RES/values-hu/strings.xml" '
 # Azerbaijani: ablative, accusative, dative — hyphenated onto the foreign name
 rep "$RES/values-az/strings.xml" '
   s/Shizukudan\b/$ENV{BRAND}-dən/g; s/Shizukunu\b/$ENV{BRAND}-i/g; s/Shizukuya\b/$ENV{BRAND}-ə/g;'
+# Arabic: upstream translates "Help" (Settings) as the verb «يساعد»; the noun is «مساعدة».
+rep "$RES/values-ar/strings.xml" 's/(name="settings_help">)يساعد</$1مساعدة</g;'
 # Arabic: transliteration, including the attached preposition li-
 rep "$RES/values-ar/strings.xml" '
   s/لشيزوكو/لـ$ENV{BRAND}/g; s/شيزوكو/$ENV{BRAND}/g;'
