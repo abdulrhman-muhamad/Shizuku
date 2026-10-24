@@ -31,6 +31,8 @@
     <string name="setup_step_computer_title">Start from a computer</string>
     <string name="setup_step_computer_body">Connect the phone to a computer by USB and run this command. Repeat after every restart.\n\n%1$s</string>
     <string name="setup_step_computer_button">Copy command</string>
+    <string name="setup_toast_turn_on_developer_options">Turn on Developer options first: tap Build number 7 times (on Xiaomi, Redmi and POCO: OS version or MIUI version).</string>
+    <string name="setup_toast_connect_wifi">Wireless debugging needs Wi-Fi. Turn on Wi-Fi and connect to a network, then tap Start again.</string>
     <string name="setup_toast_copied">Command copied</string>
 
     <string name="setup_step_root_title">Start with root</string>

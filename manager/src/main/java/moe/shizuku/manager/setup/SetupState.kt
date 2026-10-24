@@ -2,6 +2,9 @@ package moe.shizuku.manager.setup
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.provider.Settings
 import androidx.core.content.edit
@@ -46,10 +49,27 @@ object SetupState {
                 EnvironmentUtils.isTelevision() ||
                 EnvironmentUtils.getAdbTcpPort() > 0
 
-    // MIUI can report development_settings_enabled=0 while USB debugging is on, so either counts.
-    fun developerOptionsOn(context: Context): Boolean =
-        Settings.Global.getInt(context.contentResolver, Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) == 1 ||
-                usbDebuggingOn()
+    /**
+     * Whether Settings will actually show its Developer options page. Turning them off makes Settings
+     * disable its own page component, so the intent then lands on DevelopmentSettingsDisabledActivity,
+     * which closes at once. Checking where the intent resolves works on every OEM; writing
+     * development_settings_enabled does NOT re-enable that page (and makes Settings think the user is
+     * already a developer, so the Build-number taps stop working), so the helper never writes it.
+     * adb_enabled is no evidence either: the helper itself turns it on when it can.
+     */
+    fun developerOptionsOn(context: Context): Boolean {
+        val flag = Settings.Global.getInt(context.contentResolver, Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) == 1
+        val target = context.packageManager.resolveActivity(
+            Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS), PackageManager.MATCH_DEFAULT_ONLY
+        )?.activityInfo?.name
+        return flag && target?.endsWith("DevelopmentSettingsDisabledActivity") != true
+    }
+
+    /** Wireless debugging only works on a connected Wi-Fi network. */
+    fun wifiConnected(context: Context): Boolean {
+        val cm = context.getSystemService(ConnectivityManager::class.java) ?: return false
+        return cm.getNetworkCapabilities(cm.activeNetwork)?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true
+    }
 
     fun usbDebuggingOn(): Boolean = EnvironmentUtils.isAdbEnabled()
 

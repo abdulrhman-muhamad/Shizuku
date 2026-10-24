@@ -30,6 +30,8 @@
     <string name="setup_step_computer_title">التشغيل من جهاز كمبيوتر</string>
     <string name="setup_step_computer_body">وصّل الهاتف بالكمبيوتر عبر كابل USB ونفّذ هذا الأمر. كرّر ذلك بعد كل إعادة تشغيل للهاتف.\n\n%1$s</string>
     <string name="setup_step_computer_button">نسخ الأمر</string>
+    <string name="setup_toast_turn_on_developer_options">فعّل «خيارات المطور» أولاً: اضغط على «رقم الإصدار» 7 مرات (في Xiaomi وRedmi وPOCO: «إصدار النظام» أو «إصدار MIUI»).</string>
+    <string name="setup_toast_connect_wifi">تصحيح الأخطاء اللاسلكي يحتاج إلى Wi-Fi. شغّل Wi-Fi واتصل بشبكة، ثم اضغط «تشغيل» مرة أخرى.</string>
     <string name="setup_toast_copied">تم نسخ الأمر</string>
 
     <string name="setup_step_root_title">التشغيل بصلاحيات الروت</string>

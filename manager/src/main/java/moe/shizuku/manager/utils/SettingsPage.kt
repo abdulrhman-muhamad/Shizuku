@@ -8,8 +8,11 @@ import android.os.Build
 import android.provider.Settings
 import android.service.quicksettings.TileService
 import android.util.Log
+import android.widget.Toast
+import moe.shizuku.manager.R
 import moe.shizuku.manager.adb.AdbPairingAccessibilityService
 import moe.shizuku.manager.service.WatchdogService
+import moe.shizuku.manager.setup.SetupState
 
 sealed class SettingsPage(
     private val action: String,
@@ -20,6 +23,21 @@ sealed class SettingsPage(
         action: String = Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS,
         fragmentArg: String? = null
     ) : SettingsPage(action, fragmentArg) {
+
+        /**
+         * Settings closes every Developer page at once while Developer options are off, so the button
+         * looked dead. Open About phone instead and say what to tap.
+         */
+        protected fun ensureDeveloperOptions(context: Context): Boolean {
+            if (SetupState.developerOptionsOn(context)) return true
+            Toast.makeText(context, R.string.setup_toast_turn_on_developer_options, Toast.LENGTH_LONG).show()
+            runCatching { context.startActivity(Intent(Settings.ACTION_DEVICE_INFO_SETTINGS).addFlags(defaultFlags)) }
+            return false
+        }
+
+        override fun launch(context: Context) {
+            if (ensureDeveloperOptions(context)) super.launch(context)
+        }
 
         object HighlightUsbDebugging : Developer(fragmentArg = "enable_adb")
         object HighlightWirelessDebugging : Developer(fragmentArg = "toggle_adb_wireless")
@@ -46,6 +64,7 @@ sealed class SettingsPage(
             }
 
             override fun launch(context: Context) {
+                if (!ensureDeveloperOptions(context)) return
                 runCatching {
                     context.startActivity(buildIntent(context))
                 }.recoverCatching {

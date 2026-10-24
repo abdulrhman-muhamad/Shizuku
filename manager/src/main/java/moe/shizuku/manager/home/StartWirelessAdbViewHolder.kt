@@ -26,11 +26,12 @@ import moe.shizuku.manager.databinding.HomeStartWirelessAdbBinding
 import moe.shizuku.manager.ktx.asActivity
 import moe.shizuku.manager.ktx.toHtml
 import moe.shizuku.manager.receiver.NotifCancelReceiver
+import moe.shizuku.manager.setup.SetupState
 import moe.shizuku.manager.starter.StarterActivity
 import moe.shizuku.manager.utils.CustomTabsHelper
 import moe.shizuku.manager.utils.EnvironmentUtils
+import moe.shizuku.manager.utils.SettingsPage
 import moe.shizuku.manager.utils.ShizukuStateMachine
-
 import rikka.recyclerview.BaseViewHolder
 
 @RequiresApi(Build.VERSION_CODES.R)
@@ -46,6 +47,14 @@ class StartWirelessAdbViewHolder(binding: HomeStartWirelessAdbBinding, root: Vie
             }
         }
 
+
+        /** Wireless debugging only runs on Wi-Fi: say so instead of an endless "Searching..." dialog. */
+        private fun requireWifi(context: Context): Boolean {
+            if (SetupState.wifiConnected(context)) return true
+            Toast.makeText(context, R.string.setup_toast_connect_wifi, Toast.LENGTH_LONG).show()
+            SettingsPage.InternetPanel.launch(context)
+            return false
+        }
 
         fun start(context: Context, scope: CoroutineScope) {
             if (ShizukuStateMachine.get() == ShizukuStateMachine.State.STARTING) {
@@ -74,9 +83,11 @@ class StartWirelessAdbViewHolder(binding: HomeStartWirelessAdbBinding, root: Vie
                 WadbNotEnabledDialogFragment().show(context.asActivity<FragmentActivity>().supportFragmentManager)
                 // If ADB IS NOT listening to a TCP port but the device supports TLS, start mDns discovery
             } else if (tcpPort <= 0) {
+                if (!requireWifi(context)) return
                 AdbDialogFragment().show(context.asActivity<FragmentActivity>().supportFragmentManager)
                 // If ADB IS listening to a TCP port but the user wants to close it and use TLS instead, close the TCP port and start mDns discovery
             } else if (!tcpMode) {
+                if (!requireWifi(context)) return
                 scope.launch {
                     AdbStarter.stopTcp(context, tcpPort)
                 }

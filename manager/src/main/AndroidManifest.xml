@@ -68,6 +68,10 @@
              visibility). Keep in step with allowedClientPackages in gradle/libs.versions.toml. -->
         <package android:name="com.whtsagent.dialer" />
         <package android:name="com.whtsagent.dialer.debug" />
+        <!-- SetupState.developerOptionsOn checks where this intent resolves. -->
+        <intent>
+            <action android:name="android.settings.APPLICATION_DEVELOPMENT_SETTINGS" />
+        </intent>
     </queries>
 
     <application
