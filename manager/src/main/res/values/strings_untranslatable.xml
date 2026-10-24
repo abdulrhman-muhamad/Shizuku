@@ -3,9 +3,7 @@
     <string name="app_name" translatable="false">WhtsAgent Helper</string>
     <!-- Bug reports (Settings > Report a bug, ADB start-failure notification). Links live in HelpURLs.kt. -->
     <string name="support_email" translatable="false">info@whtsagent.com</string>
-    <string name="translation_url" translatable="false">https://translate.nllapps.com/projects/shizuku/</string>
-
-    <string name="about_attribution" translatable="false"><![CDATA[Based on <b><a href="%s">Shizuku</a></b>, licensed under the Apache License 2.0]]></string>
+    <string name="translation_url" translatable="false"></string>
 
     <!-- Permission related, appears in system permission UI -->
     <string name="permission_group_label" translatable="false">WhtsAgent Helper</string>

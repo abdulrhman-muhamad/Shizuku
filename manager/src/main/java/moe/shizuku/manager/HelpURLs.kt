@@ -35,9 +35,6 @@ object HelpURLs {
     val SUI = "https://github.com/RikkaApps/Sui"
     val RISH = "https://github.com/RikkaApps/Shizuku-API/tree/master/rish"
 
-    // Apache-2.0 attribution for the upstream project; keep it.
-    val UPSTREAM = "https://github.com/RikkaApps/Shizuku"
-
     /** [res] formatted with [url] as its link; without a url, the sentence holding the link is dropped. */
     fun linkedText(context: Context, @StringRes res: Int, url: String?): String =
         if (url != null) context.getString(res, url) else withoutLastSentence(context.getString(res, ""))

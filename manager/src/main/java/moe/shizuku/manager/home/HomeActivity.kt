@@ -1,5 +1,6 @@
 package moe.shizuku.manager.home
 
+import androidx.core.view.isVisible
 import moe.shizuku.manager.setup.SetupState
 import moe.shizuku.manager.setup.SetupActivity
 import android.app.NotificationManager
@@ -9,7 +10,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Process
-import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -17,7 +17,6 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
-import moe.shizuku.manager.HelpURLs
 import moe.shizuku.manager.R
 import moe.shizuku.manager.ShizukuSettings
 import moe.shizuku.manager.adb.AdbPairingService
@@ -25,7 +24,6 @@ import moe.shizuku.manager.app.AppBarActivity
 import moe.shizuku.manager.app.SnackbarHelper
 import moe.shizuku.manager.databinding.AboutDialogBinding
 import moe.shizuku.manager.databinding.HomeActivityBinding
-import moe.shizuku.manager.ktx.toHtml
 import moe.shizuku.manager.ktx.unsafeLazy
 import moe.shizuku.manager.management.AppsViewModel
 import moe.shizuku.manager.settings.SettingsActivity
@@ -160,8 +158,9 @@ abstract class HomeActivity : AppBarActivity() {
         return when (item.itemId) {
             R.id.action_about -> {
                 val binding = AboutDialogBinding.inflate(LayoutInflater.from(this), null, false)
-                binding.sourceCode.movementMethod = LinkMovementMethod.getInstance()
-                binding.sourceCode.text = getString(R.string.about_attribution, HelpURLs.UPSTREAM).toHtml()
+                // WhtsAgent: no upstream credit on screen (owner's call). Apache-2.0 needs the license text
+                // to ship with the app (assets/licenses/) and notices kept in source — not a UI credit.
+                binding.sourceCode.isVisible = false
                 binding.icon.setImageBitmap(
                     AppIconCache.getOrLoadBitmap(
                         this,
