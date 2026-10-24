@@ -1,30 +1,38 @@
 package moe.shizuku.manager
 
 import android.content.Context
+import android.content.res.Resources
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatDelegate
 
 object HelpURLs {
 
-    // TODO(brand): WhtsAgent has no support site yet, so every help, troubleshooting and
-    // bug-report link is null. While a link is null, the button, settings entry, notification
-    // tap or sentence that would open it is hidden, so nothing routes users to NLL.
-    // Set these to WhtsAgent pages to bring them back. Previous (NLL) targets, for reference:
-    //   ADB, ADB_ANDROID11            https://github.com/NLLAPPS/Shizuku/wiki/User-manual
-    //   ADB_PERMISSION                …/wiki/User-manual#start-via-wireless-debuggingstart-by-connecting-to-a-computer-the-permission-of-adb-is-limited
-    //   HELP                          https://github.com/NLLAPPS/Shizuku/wiki
-    //   TROUBLESHOOTING_BOOT          …/wiki/Troubleshooting#shizuku-isnt-starting-on-boot
-    //   TROUBLESHOOTING_STOPPING      …/wiki/troubleshooting#shizuku-keeps-stopping-randomly
-    //   LATEST_VERSION                https://acr.app
-    //   ISSUES, NEW_ISSUE             https://github.com/NLLAPPS/Shizuku/issues[/new]
-    val ADB: String? = null
-    val ADB_ANDROID11: String? = null
-    val ADB_PERMISSION: String? = null
-    val HELP: String? = null
-    val TROUBLESHOOTING_BOOT: String? = null
-    val TROUBLESHOOTING_STOPPING: String? = null
+    // WhtsAgent Helper's support page (whats-m: app/[locale]/helper), opened in the app's language
+    // when the page has it (English, Arabic). The anchors must match the page's section ids.
+    // A null link hides the button, settings entry, notification tap or sentence that would open it.
+    private const val PAGE = "https://whtsagent.com/helper"
+    private const val PAGE_AR = "https://whtsagent.com/ar/helper"
+
+    private val page: String get() = if (appLanguage() == "ar") PAGE_AR else PAGE
+    private fun section(anchor: String) = "$page#$anchor"
+
+    val ADB: String? get() = section("computer")
+    val ADB_ANDROID11: String? get() = section("wireless-debugging")
+    val ADB_PERMISSION: String? get() = section("extra-step")
+    val HELP: String? get() = page
+    val TROUBLESHOOTING_BOOT: String? get() = section("start-on-boot")
+    val TROUBLESHOOTING_STOPPING: String? get() = section("keeps-stopping")
+    // TODO(brand): section("latest-version") once the page has a real download link (it shows a
+    // placeholder today).
     val LATEST_VERSION: String? = null
+    // No public issue tracker: bug reports go to support_email.
     val ISSUES: String? = null
     val NEW_ISSUE: String? = null
+
+    /** The app's chosen language, else the phone's. */
+    private fun appLanguage(): String =
+        AppCompatDelegate.getApplicationLocales()[0]?.language?.takeIf { it.isNotEmpty() }
+            ?: Resources.getSystem().configuration.locales[0].language
 
     /**
      * Bug reports always have a destination (support_email). These pages are only what the report
